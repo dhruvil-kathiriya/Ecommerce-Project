@@ -54,9 +54,7 @@ module.exports.view_admin = async (req, res) => {
 };
 
 module.exports.view_profile = async (req, res) => {
-
     var adminRecord = req.user;
-    // var sname = adminRecord.name.split(" ");
     return res.render("Admin_pages/View_profile", {
         adminData: adminRecord,
     });
@@ -70,13 +68,6 @@ module.exports.updatepassword = async (req, res) => {
     return res.redirect("/admin/")
 };
 
-module.exports.editProfile = async (req, res) => {
-
-    let adminData = await Admin.find({});
-    return res.render("Admin_pages/EditProfile", {
-        adminData: adminData
-    })
-}
 //Profile Page
 // module.exports.profile = (req, res) => {
 //     if (req.user == undefined) {

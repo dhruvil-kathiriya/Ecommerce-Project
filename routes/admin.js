@@ -18,12 +18,10 @@ routes.get("/view_admin", passport.checkAuth, adminController.view_admin);
 
 routes.get("/view_profile", passport.checkAuth, adminController.view_profile);
 
-routes.get("/editProfile", passport.checkAuth, adminController.editProfile);
-
 routes.post("/checklogin", passport.authenticate('local', { failureRedirect: "/admin/" }), adminController.checklogin);
 
 routes.get("/forgptpass", async (req, res) => {
-    return res.render("Admin_pages/Setnewpassword");
+    return res.render("Admin_pages/Forgot_pass");
 });
 
 routes.post("/verifyotp", async (req, res) => {
