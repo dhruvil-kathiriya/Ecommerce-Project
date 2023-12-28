@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Evara Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="/imgs/theme/favicon.svg">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index.html" class="brand-wrap">
+                <img src="/imgs/theme/logo.svg" class="logo" alt="Evara Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admin/dashboard"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Admins</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/add_admin">Add Admin</a>
+                        <a href="/admin/view_admin">View Admin</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-products-list.html"> <i
+                            class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Category</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/category/add_category">Add Category</a>
+                        <a href="/admin/category/view_category">View Category</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"><i class="icon material-icons md-category"></i>
+                        <span class="text">Subcategory</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/subcategory/add_subcategory">Add Subcategory</a>
+                        <a href="/admin/subcategory/view_subcategory">View Subcategory</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Extra Category</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/extracategory/add_extracategory">Add Extra Category</a>
+                        <a href="/admin/extracategory/view_extracategory">View Extra Category</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-stars"></i>
+                        <span class="text">Brand</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/brand/add_brand">Add Brand</a>
+                        <a href="/admin/brand/view_brand">View Brand</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Type</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/type/add_type">Add Type</a>
+                        <a href="/admin/type/view_type">View Type</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i
+                            class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Product</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/product/add_product">Add Product</a>
+                        <a href="/admin/product/view_product">View Product</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div></div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="<%= locals.user.admin_image %>" alt="user"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="/admin/view_profile"><i
+                                    class="material-icons md-perm_identity"></i>View
+                                Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <!-- <a class="dropdown-item" href="#"><i
+                                    class="material-icons md-account_balance_wallet"></i>Wallet</a> -->
+                            <!-- <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a> -->
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help
+                                center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>

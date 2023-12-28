@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Evara Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <main>
+        <section class="content-main ">
+            <div class="card mx-auto card-login mt-200">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Enter Your Email</h4>
+                    <p class="mb-3">Please Provide Your Email Address</p>
+                    <form action="/admin/verifyotp" method="post">
+                        <div class="mb-3">
+                            <input class="form-control" name="email" placeholder="Email" type="text">
+                        </div>
+                        <div class="mb-4 mt-4">
+                            <button type="submit" class="btn btn-primary w-100">Send OTP</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>

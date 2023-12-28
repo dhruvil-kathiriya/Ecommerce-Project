@@ -1,0 +1,90 @@
+<%- include("./Admin_Header") %>
+
+    <section class="content-main">
+        <div class="content-header">
+            <div>
+                <h2 class="content-title card-title">Categories </h2>
+                <p>Add, edit or delete a category</p>
+            </div>
+            <div>
+                <input type="text" placeholder="Search Categories" class="form-control bg-white">
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" />
+                                            </div>
+                                        </th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Gender</th>
+                                        <th>Hobby</th>
+                                        <th>City</th>
+                                        <th>Description</th>
+                                        <th>Image</th>
+                                        <th class="text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var ad of adminData ){ %>
+                                        <tr class="">
+                                            <td class="text-center">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <img src="<%= ad.admin_image %>" alt="<%= ad.admin_image %>"
+                                                    class="rounded-circle" height="50" width="50">
+                                            </td>
+                                            <td>
+                                                <%= ad.name %>
+                                            </td>
+                                            <td><b>
+                                                    <%= ad.email %>
+                                                </b></td>
+                                            <td>
+                                                <%= ad.gender %>
+                                            </td>
+                                            <td>
+                                                <%= ad.hobby %>
+                                            </td>
+                                            <td>
+                                                <%= ad.city %>
+                                            </td>
+                                            <td>
+                                                <%= ad.description %>
+                                            </td>
+                                            <td class="text-end">
+                                                <div class="dropdown">
+                                                    <a href="#" data-bs-toggle="dropdown"
+                                                        class="btn btn-light rounded btn-sm font-sm"> <i
+                                                            class="material-icons md-more_horiz"></i> </a>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="#">View detail</a>
+                                                        <a class="dropdown-item" href="#">Edit info</a>
+                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <% } %>
+                                        </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include("./Admin_Footer.ejs") %>

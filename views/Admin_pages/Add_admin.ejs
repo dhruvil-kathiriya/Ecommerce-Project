@@ -1,0 +1,126 @@
+<%- include("./Admin_Header") %>
+
+    <section class="content-main">
+        <div class="content-header">
+            <h2 class="content-title">Add Admin </h2>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row gx-5">
+                    <div class="col-lg-9">
+                        <section class="content-body p-xl-4">
+                            <form action="/admin/insert_admin" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="row gx-3">
+                                            <div class="col-6  mb-3">
+                                                <label class="form-label">First name</label>
+                                                <input class="form-control" type="text" name="fname"
+                                                    placeholder="Type here">
+                                            </div>
+                                            <div class="col-6  mb-3">
+                                                <label class="form-label">Last name</label>
+                                                <input class="form-control" type="text" name="lname"
+                                                    placeholder="Type here">
+                                            </div>
+                                            <div class="col-lg-6  mb-3">
+                                                <label class="form-label">Email</label>
+                                                <input class="form-control" type="email" name="email"
+                                                    placeholder="example@mail.com">
+                                            </div>
+                                            <div class="col-lg-6  mb-3">
+                                                <label class="form-label">Password</label>
+                                                <input class="form-control" type="password" name="password"
+                                                    placeholder="Password">
+                                            </div>
+                                            <div class="col-lg-12  mb-3 d-flex align-items-center">
+                                                <label class="form-label me-5">Gender</label>
+                                                <div class="d-flex">
+                                                    <label class="form-check ms-2">
+                                                        <span class="form-check-label"> Male</span>
+                                                        <input class="form-check-input" name="gender" type="radio"
+                                                            value="male">
+                                                    </label>
+                                                    <label class="form-check ms-2">
+                                                        <span class="form-check-label"> Female</span>
+                                                        <input class="form-check-input" name="gender" type="radio"
+                                                            value="female">
+                                                    </label>
+                                                    <label class="form-check ms-2">
+                                                        <span class="form-check-label"> Others</span>
+                                                        <input class="form-check-input" name="gender" type="radio"
+                                                            value="others">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 mb-3 d-flex align-items-center">
+                                                <label class="col-lg-2 form-label me-3" for="hobby">hobby</label>
+                                                <div>
+                                                    <input class="form-check-input me-1" type="checkbox" value="reading"
+                                                        name="hobby">Reading
+                                                    <input class="form-check-input me-1 ms-2" type="checkbox"
+                                                        value="writing" name="hobby">Writing
+                                                    <input class="form-check-input me-1 ms-2" type="checkbox"
+                                                        value="gardening" name="hobby">Gardening
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12  mb-2">
+                                                <div class="mb-3 d-flex" style="max-width: 200px">
+                                                    <label
+                                                        class="col-lg-6 form-label d-flex align-items-center">City</label>
+                                                    <% var city=["Surat","Rajkot","Baroda","Bhavnagar","Jamnagar"] %>
+                                                        <select class="col-lg-6 form-select" name="city">
+                                                            <option value="">-- select city --</option>
+                                                            <% for (var v of city){ %>
+                                                                <option value="<%= v %>">
+                                                                    <%= v %>
+                                                                </option>
+                                                                <% } %>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12  mb-3 d-flex align-items-center">
+                                                <label class="form-label col-lg-2 me-3">Description</label>
+                                                <textarea class="form-control" name="description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <aside class="col-lg-4">
+                                        <figure class="text-lg-center align-items-center">
+                                            <img class="img-lg mb-3 img-avatar" id="avatarImage"
+                                                src="/imgs/people/avatar.jpg" alt="User Photo">
+                                            <figcaption>
+                                                <input class="form-control" type="file" class="form-control-file"
+                                                    id="uploadImage" name="admin_image" onchange="readURL(this)">
+                                            </figcaption>
+                                        </figure>
+                                    </aside>
+                                </div>
+                                <br>
+                                <button class="btn btn-primary" type="submit">Add Admin</button>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include("./Admin_Footer.ejs") %>
+
+        <script>
+
+            function readURL(input) {
+                console.log(input);
+                if (input.files && input.files[0]) {
+
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.querySelector("#avatarImage").setAttribute("src", e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>

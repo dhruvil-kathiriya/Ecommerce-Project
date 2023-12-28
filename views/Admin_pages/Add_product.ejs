@@ -1,0 +1,87 @@
+<%- include("./Admin_Header") %>
+
+    <section class="content-main">
+        <div class="content-header">
+            <h2 class="content-title">Add Product </h2>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row gx-5">
+                    <div class="col-lg-9">
+                        <section class="content-body p-xl-4">
+                            <form action="/admin/brand/insert_product" method="post">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Select category</label>
+                                            <select class="form-select" name="category_name" id="catId">
+                                                <option>-- Select category --</option>
+                                                <% catData.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.category_name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Select Subcategory</label>
+                                            <select class="form-select" name="subcategory_name" id="subcatId">
+                                                <option>-- Select Subcategory --</option>
+                                                <% subcatData.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.subcategory_name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Select Extracategory</label>
+                                            <select class="form-select" name="extracategory_name" id="extracatId">
+                                                <option>-- Select Extracategory --</option>
+                                                <% extracatData.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.extracategory_name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Select Brand</label>
+                                            <select class="form-select" name="brand_name" id="brandId">
+                                                <option>-- Select Barnd --</option>
+                                                <% brandData.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.barnd_name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Select Type</label>
+                                            <select class="form-select" name="type_name" id="typeId">
+                                                <option>-- Select Type --</option>
+                                                <% typeData.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.type_name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex gx-4 align-items-center">
+                                            <label class="form-label col-lg-4">Add Product</label>
+                                            <input type="text" placeholder="Product Name" class="form-control"
+                                                name="product_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <button class="btn btn-primary" type="submit">Add Extracategory</button>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include("./Admin_Footer.ejs") %>

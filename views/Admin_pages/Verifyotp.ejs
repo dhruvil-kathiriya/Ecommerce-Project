@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Evara Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <main>
+        <section class="content-main ">
+            <div class="card mx-auto card-login mt-200">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Enter OTP </h4>
+                    <p class="mb-3">Email Verification Code sent to your email address. Please Enter the code
+                        to continue.</p>
+                    <form action="/admin/setnewpassword">
+                        <div class="mb-3">
+                            <input class="form-control" name="email" placeholder="OTP" type="text">
+                        </div>
+                        <div class="mb-4 mt-3">
+                            <button type="submit" class="btn btn-primary w-100">Verify OTP</button>
+                        </div>
+                        <p>Didn't get the Otp? <a href="/admin/forgptpass">Resend</a> </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>
