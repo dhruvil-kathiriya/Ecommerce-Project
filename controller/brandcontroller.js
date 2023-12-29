@@ -5,7 +5,6 @@ const brand = require("../models/brand");
 
 module.exports.add_brand = async (req, res) => {
     try {
-
         let catData = await category.find({});
         let subcatData = await subcategory.find({});
         let extracatData = await extracategory.find({});
@@ -23,7 +22,7 @@ module.exports.add_brand = async (req, res) => {
 }
 
 module.exports.view_brand = async (req, res) => {
-    let brandData = await brand.find({});
+    let brandData = await brand.find({}).populate("extracategoryId").populate("subcategoryId").populate("categoryId").exec();
     return res.render("Admin_pages/View_brand", {
         brandData: brandData
     });

@@ -5,7 +5,7 @@ const brandschema = mongoose.Schema({
         type: String,
         required: true
     },
-    extracategory_name: {
+    extracategoryId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "extracategory"
     },

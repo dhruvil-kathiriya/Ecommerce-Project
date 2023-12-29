@@ -23,7 +23,7 @@ module.exports.add_product = async (req, res) => {
 }
 
 module.exports.view_product = async (req, res) => {
-    let productData = await product.find({});
+    let productData = await product.find({}).populate("typeId").populate("brandId").populate("extracategoryId").populate("subcategoryId").populate("categoryId").exec();
     return res.render("Admin_pages/View_product", {
         productData: productData
     });

@@ -19,7 +19,7 @@ module.exports.add_type = async (req, res) => {
 
 module.exports.view_type = async (req, res) => {
 
-    let typeData = await type.find({});
+    let typeData = await type.find({}).populate("brandId").populate("extracategoryId").populate("subcategoryId").populate("categoryId").exec();
     return res.render("Admin_pages/View_type", {
         typeData: typeData
     });
