@@ -28,37 +28,63 @@
                                         <th class="text-center">Extracategory</th>
                                         <th class="text-center">Brand</th>
                                         <th class="text-center">Type</th>
+                                        <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr class="">
-
-                                        <td class="text-start">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" />
-                                            </div>
-                                        </td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-
-                                        <td class="text-center">
-                                            <div class="dropdown">
-                                                <a href="#" data-bs-toggle="dropdown"
-                                                    class="btn btn-light rounded btn-sm font-sm"> <i
-                                                        class="material-icons md-more_horiz"></i> </a>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#">View detail</a>
-                                                    <a class="dropdown-item" href="#">Edit info</a>
-                                                    <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <% if(typeData !="" ){ %>
+                                        <% for(var td of typeData ){ %>
+                                            <tr class="">
+                                                <td class="text-start">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" />
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= td.categoryId.category_name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= td.subcategoryId.subcategory_name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= td.extracategoryId.extracategory_name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= td.brand.brandId.brand_name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= td.type.type_name %>
+                                                </td>
+                                                <td>
+                                                    <%if(td.isActive){%>
+                                                        <a href="/admin/isActive/<%=td.id%>"
+                                                            class="badge rounded-pill alert-success">Active</a>
+                                                        <% }else{ %>
+                                                            <a href="/admin/deActive/<%=td.id%>"
+                                                                class="badge rounded-pill alert-danger">Inactive</a>
+                                                            <% }%>
+                                                </td>
+                                                <td class="text-end">
+                                                    <div class="dropdown">
+                                                        <a href="#" data-bs-toggle="dropdown"
+                                                            class="btn btn-light rounded btn-sm font-sm"> <i
+                                                                class="material-icons md-more_horiz"></i> </a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">View detail</a>
+                                                            <a class="dropdown-item" href="#">Edit info</a>
+                                                            <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <% }%>
+                                                    <% }else{ %>
+                                            <tr>
+                                                <h2 class="text-center">Record Not Found</h2>
+                                            </tr>
+                                            <% } %>
+                                                </tr>
 
                                 </tbody>
                             </table>

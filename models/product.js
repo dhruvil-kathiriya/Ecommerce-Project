@@ -6,29 +6,29 @@ const multiImagepath = "/uploads/Product_multiple_images"
 
 
 const productschema = mongoose.Schema({
-    product_name: {
-        type: String,
-        required: true
-    },
-    type_name: {
+    categoryId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "type"
-    },
-    brand_name: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "brand"
-    },
-    extracategory_name: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "extracategory"
+        ref: "category"
     },
     subcategoryId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "subcategory"
     },
-    categoryId: {
+    extracategoryId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "category"
+        ref: "extracategory"
+    },
+    brandId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "brand"
+    },
+    typeId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "type"
+    },
+    product_name: {
+        type: String,
+        required: true
     },
     product_price: {
         type: String,

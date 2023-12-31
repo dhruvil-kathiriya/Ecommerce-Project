@@ -33,32 +33,60 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="">
-                                        <td class="text-start">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" />
-                                            </div>
-                                        </td>
-                                        <td class="text-center">Hiii</td>
-                                        <td class="text-center">Hiii</td>
-                                        <td class="text-center">Hiii</td>
-                                        <td class="text-center">Hiii</td>
-                                        <td class="text-center">Hiii</td>
-                                        <td class="text-center">Hiii</td>
-
-                                        <td class="text-end">
-                                            <div class="dropdown">
-                                                <a href="#" data-bs-toggle="dropdown"
-                                                    class="btn btn-light rounded btn-sm font-sm"> <i
-                                                        class="material-icons md-more_horiz"></i> </a>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#">View detail</a>
-                                                    <a class="dropdown-item" href="#">Edit info</a>
-                                                    <a class="dropdown-item text-danger" href="#">Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <% if(productData !="" ){ %>
+                                        <% for(var pd of productData ){ %>
+                                            <tr class="">
+                                                <td class="text-start">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" />
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= pd.categoryId.category_name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= pd.subcategoryId.subcategory_name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= pd.extracategoryId.extracategory_name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= pd.brand.brand_name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= pd.type.type_name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= pd.product.product_name %>
+                                                </td>
+                                                <td>
+                                                    <%if(pd.isActive){%>
+                                                        <a href="/admin/isActive/<%=pd.id%>"
+                                                            class="badge rounded-pill alert-success">Active</a>
+                                                        <% }else{ %>
+                                                            <a href="/admin/deActive/<%=pd.id%>"
+                                                                class="badge rounded-pill alert-danger">Inactive</a>
+                                                            <% }%>
+                                                </td>
+                                                <td class="text-end">
+                                                    <div class="dropdown">
+                                                        <a href="#" data-bs-toggle="dropdown"
+                                                            class="btn btn-light rounded btn-sm font-sm"> <i
+                                                                class="material-icons md-more_horiz"></i> </a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">View detail</a>
+                                                            <a class="dropdown-item" href="#">Edit info</a>
+                                                            <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <% }%>
+                                                    <% }else{ %>
+                                            <tr>
+                                                <h2 class="text-center">Record Not Found</h2>
+                                            </tr>
+                                            <% } %>
+                                                </tr>
                                 </tbody>
                             </table>
                         </div>

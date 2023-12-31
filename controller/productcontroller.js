@@ -23,7 +23,8 @@ module.exports.add_product = async (req, res) => {
 }
 
 module.exports.view_product = async (req, res) => {
-    let productData = await product.find({}).populate("typeId").populate("brandId").populate("extracategoryId").populate("subcategoryId").populate("categoryId").exec();
+    let productData = await product.find({}).populate("categoryId").populate("typeId").populate("brandId").populate("extracategoryId").populate("subcategoryId").exec();
+    console.log(productData);
     return res.render("Admin_pages/View_product", {
         productData: productData
     });
@@ -35,6 +36,7 @@ module.exports.insert_product = async (req, res) => {
         req.body.created_date = new Date().toLocaleString();
         req.body.updated_date = new Date().toLocaleString();
         let productData = await product.create(req.body);
+        console.log(productData);
         if (productData) {
             console.log("product Added Successfully");
             return res.redirect("back");
@@ -49,3 +51,28 @@ module.exports.insert_product = async (req, res) => {
         }
     }
 }
+
+module.exports.getBrandType = async (req, res) => {
+    try {
+        // console.log(req.body);
+        let brandData = await brand.find({
+            categoryId: req.body.categoryId,
+            subcategoryId: req.body.subcategoryId,
+            extracategoryId: req.body.extracategoryId,
+        });
+        let typeData = await type.find({
+            categoryId: req.body.categoryId,
+            subcategoryId: req.body.subcategoryId,
+            extracategoryId: req.body.extracategoryId,
+        });
+        // console.log(brandData);
+        // console.log(typeData);
+        return res.render("Admin_pages/ajaxBrandType", {
+            brandData: brandData,
+            typeData: typeData,
+        });
+    } catch (err) {
+        console.log(err);
+        return res.redirect("back");
+    }
+};

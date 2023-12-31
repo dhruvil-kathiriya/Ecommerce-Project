@@ -14,7 +14,8 @@
                                     <div class="col-lg-8">
                                         <div class="d-flex align-items-center mb-3">
                                             <label class="form-label col-lg-4">Select category</label>
-                                            <select class="form-select" name="category_name" id="catId">
+                                            <select class="form-select" name="categoryId" id="catId"
+                                                onchange="return getsubcatData()">
                                                 <option>-- Select category --</option>
                                                 <% catData.map((v,i)=>{ %>
                                                     <option value="<%= v.id %>">
@@ -25,7 +26,8 @@
                                         </div>
                                         <div class="d-flex align-items-center mb-3">
                                             <label class="form-label col-lg-4">Select Subcategory</label>
-                                            <select class="form-select" name="subcategory_name" id="subcatId">
+                                            <select class="form-select" name="subcategoryId" id="subcatId"
+                                                onchange="return getextracatData()">
                                                 <option>-- Select Subcategory --</option>
                                                 <% subcatData.map((v,i)=>{ %>
                                                     <option value="<%= v.id %>">
@@ -36,7 +38,8 @@
                                         </div>
                                         <div class="d-flex align-items-center mb-3">
                                             <label class="form-label col-lg-4">Select Extracategory</label>
-                                            <select class="form-select" name="extracategory_name" id="extracatId">
+                                            <select class="form-select" name="extracategoryId" id="extracatId"
+                                                onchange="return getBrandTypeData()">
                                                 <option>-- Select Extracategory --</option>
                                                 <% extracatData.map((v,i)=>{ %>
                                                     <option value="<%= v.id %>">

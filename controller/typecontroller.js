@@ -19,7 +19,7 @@ module.exports.add_type = async (req, res) => {
 
 module.exports.view_type = async (req, res) => {
 
-    let typeData = await type.find({}).populate("brandId").populate("extracategoryId").populate("subcategoryId").populate("categoryId").exec();
+    let typeData = await type.find({}).populate(['categoryId', 'subcategoryId', 'extracategoryId', 'brandId']).exec();
     return res.render("Admin_pages/View_type", {
         typeData: typeData
     });
@@ -31,14 +31,6 @@ module.exports.insert_type = async (req, res) => {
         req.body.created_date = new Date().toLocaleString();
         req.body.updated_date = new Date().toLocaleString();
         let typeData = await type.create(req.body);
-        if (typeData) {
-            console.log("type Added Successfully");
-            return res.redirect("back");
-        }
-        else {
-            console.log("type is Not Added");
-            return res.redirect("back");
-        }
     } catch (error) {
         if (error) {
             console.log(error, "Something went Wrong");

@@ -22,7 +22,8 @@ module.exports.add_brand = async (req, res) => {
 }
 
 module.exports.view_brand = async (req, res) => {
-    let brandData = await brand.find({}).populate("extracategoryId").populate("subcategoryId").populate("categoryId").exec();
+    let brandData = await brand.find({}).populate("subcategoryId").populate("categoryId").populate("extracategoryId").exec();
+    // console.log(brandData);
     return res.render("Admin_pages/View_brand", {
         brandData: brandData
     });
@@ -30,7 +31,6 @@ module.exports.view_brand = async (req, res) => {
 
 module.exports.insert_brand = async (req, res) => {
     try {
-
         req.body.isActive = true;
         req.body.created_date = new Date().toLocaleString();
         req.body.updated_date = new Date().toLocaleString();
@@ -47,5 +47,26 @@ module.exports.insert_brand = async (req, res) => {
         if (error) {
             console.log(error, "Something went Wrong");
         }
+    }
+}
+
+
+module.exports.getextracategoryData = async (req, res) => {
+    try {
+        // console.log(req.body);
+        let extraCatData = await extracategory.find({
+            categoryId: req.body.categoryId,
+            subcategoryId: req.body.subcategoryId,
+        });
+        // console.log(extraCatData);
+        let optionData =
+            "<option value=''>-- Select Extra Category --</option>";
+        extraCatData.map((v, i) => {
+            optionData += `<option value='${v.id}'>${v.extracategory_name}</option>`;
+        });
+        return res.json(optionData);
+    } catch (err) {
+        console.log(err);
+        return res.redirect("back");
     }
 }

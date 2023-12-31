@@ -9,12 +9,13 @@
                 <div class="row gx-5">
                     <div class="col-lg-9">
                         <section class="content-body p-xl-4">
-                            <form action="/admin/brand/insert_product" method="post">
+                            <form action="/admin/product/insert_product" method="post">
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <div class="d-flex align-items-center mb-3">
                                             <label class="form-label col-lg-4">Select category</label>
-                                            <select class="form-select" name="category_name" id="catId">
+                                            <select class="form-select" name="category_name" id="catId"
+                                                onchange="return getsubcatData()">
                                                 <option>-- Select category --</option>
                                                 <% catData.map((v,i)=>{ %>
                                                     <option value="<%= v.id %>">
@@ -25,7 +26,8 @@
                                         </div>
                                         <div class="d-flex align-items-center mb-3">
                                             <label class="form-label col-lg-4">Select Subcategory</label>
-                                            <select class="form-select" name="subcategory_name" id="subcatId">
+                                            <select class="form-select" name="subcategory_name" id="subcatId"
+                                                onchange="return getextracatData()">
                                                 <option>-- Select Subcategory --</option>
                                                 <% subcatData.map((v,i)=>{ %>
                                                     <option value="<%= v.id %>">
@@ -36,7 +38,8 @@
                                         </div>
                                         <div class="d-flex align-items-center mb-3">
                                             <label class="form-label col-lg-4">Select Extracategory</label>
-                                            <select class="form-select" name="extracategory_name" id="extracatId">
+                                            <select class="form-select" name="extracategory_name" id="extracatId"
+                                                onchange="return getBrandTypeData()">
                                                 <option>-- Select Extracategory --</option>
                                                 <% extracatData.map((v,i)=>{ %>
                                                     <option value="<%= v.id %>">
@@ -45,27 +48,29 @@
                                                     <% }) %>
                                             </select>
                                         </div>
-                                        <div class="d-flex align-items-center mb-3">
-                                            <label class="form-label col-lg-4">Select Brand</label>
-                                            <select class="form-select" name="brand_name" id="brandId">
-                                                <option>-- Select Barnd --</option>
-                                                <% brandData.map((v,i)=>{ %>
-                                                    <option value="<%= v.id %>">
-                                                        <%= v.barnd_name %>
-                                                    </option>
-                                                    <% }) %>
-                                            </select>
-                                        </div>
-                                        <div class="d-flex align-items-center mb-3">
-                                            <label class="form-label col-lg-4">Select Type</label>
-                                            <select class="form-select" name="type_name" id="typeId">
-                                                <option>-- Select Type --</option>
-                                                <% typeData.map((v,i)=>{ %>
-                                                    <option value="<%= v.id %>">
-                                                        <%= v.type_name %>
-                                                    </option>
-                                                    <% }) %>
-                                            </select>
+                                        <div id="BrandType">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <label class="form-label col-lg-4">Select Brand</label>
+                                                <select class="form-select" name="brand_name" id="brandId">
+                                                    <option>-- Select Barnd --</option>
+                                                    <% brandData.map((v,i)=>{ %>
+                                                        <option value="<%= v.id %>">
+                                                            <%= v.barnd_name %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-3">
+                                                <label class="form-label col-lg-4">Select Type</label>
+                                                <select class="form-select" name="type_name" id="typeId">
+                                                    <option>-- Select Type --</option>
+                                                    <% typeData.map((v,i)=>{ %>
+                                                        <option value="<%= v.id %>">
+                                                            <%= v.type_name %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="d-flex gx-4 align-items-center mb-3">
                                             <label class="form-label col-lg-4">Add Product</label>
@@ -92,15 +97,18 @@
                                             <div class="d-flex">
                                                 <label class="form-check ms-2">
                                                     <span class="form-check-label">36</span>
-                                                    <input class="form-check-input" name="size" type="radio" value="36">
+                                                    <input class="form-check-input" name="product_size" type="radio"
+                                                        value="36">
                                                 </label>
                                                 <label class="form-check ms-2">
                                                     <span class="form-check-label"> 38</span>
-                                                    <input class="form-check-input" name="size" type="radio" value="38">
+                                                    <input class="form-check-input" name="product_size" type="radio"
+                                                        value="38">
                                                 </label>
                                                 <label class="form-check ms-2">
                                                     <span class="form-check-label"> 40</span>
-                                                    <input class="form-check-input" name="size" type="radio" value="40">
+                                                    <input class="form-check-input" name="product_size" type="radio"
+                                                        value="40">
                                                 </label>
                                             </div>
                                         </div>
@@ -109,17 +117,17 @@
                                             <div class="d-flex">
                                                 <label class="form-check ms-2">
                                                     <span class="form-check-label">Gray</span>
-                                                    <input class="form-check-input" name="color" type="radio"
+                                                    <input class="form-check-input" name="product_color" type="radio"
                                                         value="Gray">
                                                 </label>
                                                 <label class="form-check ms-2">
                                                     <span class="form-check-label"> Black</span>
-                                                    <input class="form-check-input" name="color" type="radio"
+                                                    <input class="form-check-input" name="product_color" type="radio"
                                                         value="Black">
                                                 </label>
                                                 <label class="form-check ms-2">
                                                     <span class="form-check-label"> White</span>
-                                                    <input class="form-check-input" name="color" type="radio"
+                                                    <input class="form-check-input" name="product_color" type="radio"
                                                         value="White">
                                                 </label>
                                             </div>

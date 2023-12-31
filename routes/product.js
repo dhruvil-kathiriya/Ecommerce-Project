@@ -10,4 +10,6 @@ routes.get("/view_product", passport.checkAuth, productcontroller.view_product);
 
 routes.post("/insert_product", productcontroller.insert_product);
 
+routes.post("/getBrandType", productcontroller.getBrandType)
+
 module.exports = routes;

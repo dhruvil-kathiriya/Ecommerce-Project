@@ -3,11 +3,15 @@
     <section class="content-main">
         <div class="content-header">
             <div>
-                <h2 class="content-title card-title">Categories </h2>
-                <p>Add, edit or delete a category</p>
+                <h2 class="content-title card-title">Admins </h2>
+                <p>Add, edit or delete a Admins</p>
             </div>
             <div>
-                <input type="text" placeholder="Search Categories" class="form-control bg-white">
+                <form>
+                    <input type="text" placeholder="Search Admins" class="form-control bg-white" name="search"
+                        value="<%= searchValue %>">
+                    <button type="submit" value="search">submit</button>
+                </form>
             </div>
         </div>
         <div class="card">
@@ -30,56 +34,99 @@
                                         <th>City</th>
                                         <th>Description</th>
                                         <th>Image</th>
+                                        <th>Status</th>
                                         <th class="text-end">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% for(var ad of adminData ){ %>
-                                        <tr class="">
-                                            <td class="text-center">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <img src="<%= ad.admin_image %>" alt="<%= ad.admin_image %>"
-                                                    class="rounded-circle" height="50" width="50">
-                                            </td>
-                                            <td>
-                                                <%= ad.name %>
-                                            </td>
-                                            <td><b>
-                                                    <%= ad.email %>
-                                                </b></td>
-                                            <td>
-                                                <%= ad.gender %>
-                                            </td>
-                                            <td>
-                                                <%= ad.hobby %>
-                                            </td>
-                                            <td>
-                                                <%= ad.city %>
-                                            </td>
-                                            <td>
-                                                <%= ad.description %>
-                                            </td>
-                                            <td class="text-end">
-                                                <div class="dropdown">
-                                                    <a href="#" data-bs-toggle="dropdown"
-                                                        class="btn btn-light rounded btn-sm font-sm"> <i
-                                                            class="material-icons md-more_horiz"></i> </a>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">View detail</a>
-                                                        <a class="dropdown-item" href="#">Edit info</a>
-                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                    <% if(adminData !="" ){ %>
+                                        <% for(var ad of adminData ){ %>
+                                            <tr class="">
+                                                <td class="text-center">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" />
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <% } %>
-                                        </tr>
-
+                                                </td>
+                                                <td class="text-center">
+                                                    <img src="<%= ad.admin_image %>" alt="<%= ad.admin_image %>"
+                                                        class="rounded-circle" height="50" width="50">
+                                                </td>
+                                                <td>
+                                                    <%= ad.name %>
+                                                </td>
+                                                <td><b>
+                                                        <%= ad.email %>
+                                                    </b></td>
+                                                <td>
+                                                    <%= ad.gender %>
+                                                </td>
+                                                <td>
+                                                    <%= ad.hobby %>
+                                                </td>
+                                                <td>
+                                                    <%= ad.city %>
+                                                </td>
+                                                <td>
+                                                    <%= ad.description %>
+                                                </td>
+                                                <td>
+                                                    <%if(ad.isActive){%>
+                                                        <a href="/admin/isActive/<%=ad.id%>"
+                                                            class="badge rounded-pill alert-success">Active</a>
+                                                        <% }else{ %>
+                                                            <a href="/admin/deActive/<%=ad.id%>"
+                                                                class="badge rounded-pill alert-danger">Inactive</a>
+                                                            <% }%>
+                                                </td>
+                                                <td class="text-end">
+                                                    <div class="dropdown">
+                                                        <a href="#" data-bs-toggle="dropdown"
+                                                            class="btn btn-light rounded btn-sm font-sm"> <i
+                                                                class="material-icons md-more_horiz"></i> </a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">View detail</a>
+                                                            <a class="dropdown-item" href="#">Edit info</a>
+                                                            <a class="dropdown-item text-danger"
+                                                                href="/admin/deleteAdmin/<%=ad.id%>">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <% }%>
+                                                <% }else{ %>
+                                                    <tr>
+                                                        <h2 class="text-center">Record Not Found</h2>
+                                                    </tr>
+                                                    <% } %>
                                 </tbody>
                             </table>
+
+                            <% if(currentPage> 0){ %>
+                                <a href="?pages=<%= currentPage - 1 %>&search=<%= searchValue %>"
+                                    class="btn btn-primary" style="padding: 10px 16px;">
+                                    Previous</a>
+                                <% } %>
+                                    <% if(currentPage> 0){ %>
+                                        <a href="?pages=<%= currentPage - 1 %>&search=<%= searchValue %>"
+                                            class="btn border" style="padding: 10px 16px;">
+                                            <%= currentPage %>
+                                        </a>
+                                        <% } %>
+                                            <a href="?pages=<%= currentPage %>&search=<%= searchValue %>"
+                                                class="btn btn-primary" style="padding: 10px 16px;">
+                                                <%= currentPage + 1 %>
+                                            </a>
+                                            <% if(totalDocument> currentPage + 1){ %>
+                                                <a href="?pages=<%= currentPage + 1 %>&search=<%= searchValue %>"
+                                                    class="btn border" style="padding: 10px 16px;">
+                                                    <%= currentPage + 2 %>
+                                                </a>
+                                                <% } %>
+                                                    <% if(totalDocument> currentPage + 1){ %>
+                                                        <a href="?pages=<%= currentPage + 1 %>&search=<%= searchValue %>"
+                                                            class="btn btn-primary" style="padding: 10px 16px;">Next</a>
+                                                        <% } %>
+
                         </div>
                     </div>
                 </div>

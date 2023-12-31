@@ -1,19 +1,17 @@
 const mongoose = require('mongoose');
-const category = require("../models/category");
-const subcategory = require("../models/subcategory");
 
 const extracategoryschema = mongoose.Schema({
-    extracategory_name: {
-        type: String,
-        required: true
+    categoryId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "category"
     },
     subcategoryId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "subcategory"
     },
-    categoryId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "category"
+    extracategory_name: {
+        type: String,
+        required: true
     },
     isActive: {
         type: Boolean,

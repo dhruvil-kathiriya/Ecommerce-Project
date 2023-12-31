@@ -41,59 +41,51 @@
     //     })
     // }
 
-    // function getsubcatData() {
-    //     var catId = document.getElementById("catId").value;
-    //     $.ajax({
-    //         url: "/admin/extracategory/getsubcategoryData",
-    //         method: "POST",
-    //         data: {
-    //             "categoryId": catId
-    //         },
-    //         success: function (res) {
-    //             $("#subcatId").html(res)
-    //         }
-    //     })
-    // }
+    function getsubcatData() {
+        var catId = document.getElementById("catId").value;
+        $.ajax({
+            url: "/admin/extracategory/getsubcategoryData",
+            method: "POST",
+            data: {
+                "categoryId": catId
+            },
+            success: function (res) {
+                $("#subcatId").html(res)
+            }
+        })
+    }
+    function getextracatData() {
+        var catId = document.getElementById("catId").value;
+        var subcatId = document.getElementById("subcatId").value
+        $.ajax({
+            url: "/admin/brand/getextracategoryData",
+            method: "POST",
+            data: {
+                "categoryId": catId,
+                "subcategoryId": subcatId
+            },
+            success: function (res) {
+                $("#extracatId").html(res)
+            }
+        })
+    }
 
-    // function getextracatData() {
-    //     var subcatId = document.getElementById("subcatId").value;
-    //     $.ajax({
-    //         url: "/admin/brand/getextracategoryData",
-    //         method: "POST",
-    //         data: {
-    //             "subcategoryId": subcatId
-    //         },
-    //         success: function (res) {
-    //             $("#extracatId").html(res)
-    //         }
-    //     })
-    // }
+    let getBrandTypeData = () => {
+        let catId = document.getElementById("catId").value;
+        let subcatId = document.getElementById("subcatId").value;
+        let extracatId = document.getElementById("extracatId").value;
+        $.ajax({
+            url: "/admin/product/getBrandType",
+            method: "POST",
+            data: {
+                categoryId: catId,
+                subcategoryId: subcatId,
+                extracategoryId: extracatId
+            },
+            success: (res) => {
+                $("#BrandType").html(res);
+            }
+        })
+    }
 
-    // function getbrandData() {
-    //     var extracatId = document.getElementById("extracatId").value;
-    //     $.ajax({
-    //         url: "/admin/type/getbrandData",
-    //         method: "POST",
-    //         data: {
-    //             "extracategoryId": catId
-    //         },
-    //         success: function (res) {
-    //             $("#brandId").html(res)
-    //         }
-    //     })
-    // }
-
-    // function gettypeData() {
-    //     var brandId = document.getElementById("brandId").value;
-    //     $.ajax({
-    //         url: "/admin/product/gettypeData",
-    //         method: "POST",
-    //         data: {
-    //             "brandId": brandId
-    //         },
-    //         success: function (res) {
-    //             $("#typeId").html(res)
-    //         }
-    //     })
-    // }
 </script>

@@ -10,4 +10,6 @@ routes.get("/view_brand", passport.checkAuth, brandcontroller.view_brand);
 
 routes.post("/insert_brand", brandcontroller.insert_brand);
 
+routes.post("/getextracategoryData", brandcontroller.getextracategoryData)
+
 module.exports = routes;

@@ -10,4 +10,6 @@ routes.get("/view_category", passport.checkAuth, categorycontroller.view_categor
 
 routes.post("/insert_category", categorycontroller.insert_category);
 
+// routes.post("/search", categorycontroller.search);
+
 module.exports = routes;

@@ -39,6 +39,10 @@ routes.get("/logout", async (req, res) => {
     return res.redirect("/admin/");
 });
 
+routes.get('/isActive/:id', adminController.isActive);
+routes.get('/deActive/:id', adminController.deActive);
+routes.get('/deleteAdmin/:id', adminController.deleteAdmin);
+
 routes.use("/category", passport.checkAuth, require("./category"));
 routes.use("/subcategory", passport.checkAuth, require("./subcategory"));
 routes.use("/extracategory", passport.checkAuth, require("./extracategory"));

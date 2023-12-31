@@ -6,7 +6,6 @@ module.exports.add_subcategory = async (req, res) => {
     return res.render("Admin_pages/Add_subcategory", { catData: catData });
 }
 
-
 module.exports.insert_subcategory = async (req, res) => {
     try {
         console.log(req.body);
@@ -32,6 +31,6 @@ module.exports.insert_subcategory = async (req, res) => {
 
 module.exports.view_subcategory = async (req, res) => {
     let subcatData = await subcategorys.find({}).populate("categoryId").exec();
-    console.log(subcatData);
+    // console.log(subcatData);
     return res.render("Admin_pages/View_subcategory", { subcatData: subcatData });
 }

@@ -12,6 +12,6 @@ routes.get("/view_extracategory", passport.checkAuth, extracategorycontroller.vi
 
 routes.post("/insert_extracategory", extracategorycontroller.insert_extracategory);
 
-
+routes.post("/getsubcategoryData", extracategorycontroller.getsubcategoryData)
 
 module.exports = routes;

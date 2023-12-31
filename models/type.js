@@ -1,25 +1,21 @@
 const mongoose = require('mongoose');
 
 const typeschema = mongoose.Schema({
-    type_name: {
-        type: String,
-        required: true
-    },
-    brand_name: {
+    categoryId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "brand"
-    },
-    extracategory_name: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "extracategory"
+        ref: "category"
     },
     subcategoryId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "subcategory"
     },
-    categoryId: {
+    extracategoryId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "category"
+        ref: "extracategory"
+    },
+    type_name: {
+        type: String,
+        required: true
     },
     isActive: {
         type: Boolean,

@@ -1,0 +1,22 @@
+<div class="d-flex align-items-center mb-3">
+    <label class="form-label col-lg-4">Select Brand</label>
+    <select class="form-select" name="brand_name" id="brandId">
+        <option>-- Select Barnd --</option>
+        <% brandData.map((v,i)=>{ %>
+            <option value="<%= v.id %>">
+                <%= v.brand_name %>
+            </option>
+            <% }) %>
+    </select>
+</div>
+<div class="d-flex align-items-center mb-3">
+    <label class="form-label col-lg-4">Select Type</label>
+    <select class="form-select" name="type_name" id="typeId">
+        <option>-- Select Type --</option>
+        <% typeData.map((v,i)=>{ %>
+            <option value="<%= v.id %>">
+                <%= v.type_name %>
+            </option>
+            <% }) %>
+    </select>
+</div>

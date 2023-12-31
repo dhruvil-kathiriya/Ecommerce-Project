@@ -1,6 +1,5 @@
 const category = require("../models/category");
 
-
 module.exports.add_category = async (req, res) => {
     return res.render("Admin_pages/Add_category");
 }
@@ -34,3 +33,24 @@ module.exports.insert_category = async (req, res) => {
         }
     }
 }
+
+// module.exports.search = async (req, res) => {
+//     try {
+//         var search = "";
+//         if (req.query.search) {
+//             search = req.query.search;
+//         }
+//         let searchData = await category.find({
+//             $or: [
+//                 { "searchName": { $regx: "." + search + ".", $options: "i" } },
+//             ]
+//         });
+//         return res.render("search", {
+//             searchData: searchData,
+//             searchvalue: search
+//         })
+//     } catch (error) {
+//         if (error) console.log(error);
+//         return res.redirect("back");
+//     }
+// }
