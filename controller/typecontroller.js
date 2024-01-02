@@ -37,3 +37,11 @@ module.exports.insert_type = async (req, res) => {
         }
     }
 }
+module.exports.getBrand = async (req, res) => {
+    var BrandData = await brand.find({ extracategoryId: req.body.extraid });
+    var options = `<option value="">--Select--</option>`;
+    BrandData.map((v, i) => {
+        options += `<option value='${v.id}'>${v.brandname}</option>`;
+    });
+    return res.json(options);
+}

@@ -13,6 +13,10 @@ const typeschema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "extracategory"
     },
+    brandId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "brand"
+    },
     type_name: {
         type: String,
         required: true

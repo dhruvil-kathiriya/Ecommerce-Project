@@ -38,11 +38,23 @@
                                         </div>
                                         <div class="d-flex align-items-center mb-3">
                                             <label class="form-label col-lg-4">Select Extracategory</label>
-                                            <select class="form-select" name="extracategoryId" id="extracatId">
+                                            <select class="form-select" name="extracategoryId" id="extracatId"
+                                                onchange="getbrandData()">
                                                 <option>-- Select Extracategory --</option>
                                                 <% extracatData.map((v,i)=>{ %>
                                                     <option value="<%= v.id %>">
                                                         <%= v.extracategory_name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Select Brand</label>
+                                            <select class="form-select" name="brandId" id="brandId">
+                                                <option>-- Select Extracategory --</option>
+                                                <% brandData.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.brand_name %>
                                                     </option>
                                                     <% }) %>
                                             </select>

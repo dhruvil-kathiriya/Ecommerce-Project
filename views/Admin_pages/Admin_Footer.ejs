@@ -70,6 +70,20 @@
         })
     }
 
+    function getbrandData() {
+        var extraId = document.getElementById("extracatId").value;
+        $.ajax({
+            url: "/admin/type/getextbrandData",
+            method: "POST",
+            data: {
+                extraid: extraId
+            },
+            success: function (res) {
+                $("#brandId").html(res)
+            }
+        })
+    }
+
     let getBrandTypeData = () => {
         let catId = document.getElementById("catId").value;
         let subcatId = document.getElementById("subcatId").value;

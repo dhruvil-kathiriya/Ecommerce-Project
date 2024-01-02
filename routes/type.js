@@ -10,4 +10,6 @@ routes.get("/view_type", passport.checkAuth, typecontroller.view_type);
 
 routes.post("/insert_type", typecontroller.insert_type);
 
+routes.post('/getextbrandData', typecontroller.getBrand)
+
 module.exports = routes;
