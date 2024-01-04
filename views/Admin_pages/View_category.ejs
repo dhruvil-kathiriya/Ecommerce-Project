@@ -7,9 +7,13 @@
                 <p>Add, edit or delete a category</p>
             </div>
             <div>
-                <form action="/category/search" method="post">
-                    <input type="text" name="search" placeholder="Search Categories" class="form-control bg-white">
-                    <input type="submit">
+                <form>
+                    <div class="d-flex align-items-center">
+                        <input type="text" placeholder="Search Categories" class="form-control bg-white" name="search"
+                            value="<%= searchValue %>">
+                        <button type="submit" class="btn btn-md m-2 rounded font-sm hover-up"
+                            value="search">Search</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -27,36 +31,79 @@
                                             </div>
                                         </th>
                                         <th class="text-center">Category</th>
+                                        <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% for(var ctdata of catdata){ %>
-                                        <tr class="">
-                                            <td class="text-start">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" />
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <%= ctdata.category_name %>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="dropdown">
-                                                    <a href="#" data-bs-toggle="dropdown"
-                                                        class="btn btn-light rounded btn-sm font-sm"> <i
-                                                            class="material-icons md-more_horiz"></i> </a>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">View detail</a>
-                                                        <a class="dropdown-item" href="#">Edit info</a>
-                                                        <a class="dropdown-item text-danger" href="">Delete</a>
+                                    <% if(catdata !="" ){ %>
+                                        <% for(var ctdata of catdata){ %>
+                                            <tr class="">
+                                                <td class="text-start">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" />
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <% } %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= ctdata.category_name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%if(ctdata.isActive){%>
+                                                        <a href="/admin/category/isActive/<%=ctdata.id%>"
+                                                            class="badge rounded-pill alert-success">Active</a>
+                                                        <% }else{ %>
+                                                            <a href="/admin/category/deActive/<%=ctdata.id%>"
+                                                                class="badge rounded-pill alert-danger">Inactive</a>
+                                                            <% }%>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="dropdown">
+                                                        <a href="#" data-bs-toggle="dropdown"
+                                                            class="btn btn-light rounded btn-sm font-sm"> <i
+                                                                class="material-icons md-more_horiz"></i> </a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">View detail</a>
+                                                            <a class="dropdown-item" href="#">Edit info</a>
+                                                            <a class="dropdown-item text-danger"
+                                                                href="/admin/category/deletecategory/<%= ctdata.id %>">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <% }%>
+                                                <% }else{ %>
+                                                    <td class="text-center" colspan="3">
+                                                        <p class="text-center text-danger">Record Not Found</p>
+                                                    </td>
+                                                    <% } %>
+                                                        </tr>
                                 </tbody>
                             </table>
+                            <% if(currentPage> 0){ %>
+                                <a href="?pages=<%= currentPage - 1 %>&search=<%= searchValue %>"
+                                    class="btn btn-primary" style="padding: 10px 16px;">
+                                    Previous</a>
+                                <% } %>
+                                    <% if(currentPage> 0){ %>
+                                        <a href="?pages=<%= currentPage - 1 %>&search=<%= searchValue %>"
+                                            class="btn border" style="padding: 10px 16px;">
+                                            <%= currentPage %>
+                                        </a>
+                                        <% } %>
+                                            <a href="?pages=<%= currentPage %>&search=<%= searchValue %>"
+                                                class="btn btn-primary" style="padding: 10px 16px;">
+                                                <%= currentPage + 1 %>
+                                            </a>
+                                            <% if(totalDocument> currentPage + 1){ %>
+                                                <a href="?pages=<%= currentPage + 1 %>&search=<%= searchValue %>"
+                                                    class="btn border" style="padding: 10px 16px;">
+                                                    <%= currentPage + 2 %>
+                                                </a>
+                                                <% } %>
+                                                    <% if(totalDocument> currentPage + 1){ %>
+                                                        <a href="?pages=<%= currentPage + 1 %>&search=<%= searchValue %>"
+                                                            class="btn btn-primary" style="padding: 10px 16px;">Next</a>
+                                                        <% } %>
                         </div>
                     </div>
                 </div>

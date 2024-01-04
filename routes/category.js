@@ -1,15 +1,18 @@
 const express = require("express");
-const routes = express.Router();
-const category = require("../models/category");
+const routs = express.Router();
 const categorycontroller = require("../controller/categorycontroller");
 const passport = require("passport");
 
-routes.get("/add_category", passport.checkAuth, categorycontroller.add_category);
+routs.get("/add_category", passport.checkAuth, categorycontroller.add_category);
 
-routes.get("/view_category", passport.checkAuth, categorycontroller.view_category);
+routs.get("/view_category", passport.checkAuth, categorycontroller.view_category);
 
-routes.post("/insert_category", categorycontroller.insert_category);
+routs.post("/insert_category", categorycontroller.insert_category);
 
-// routes.post("/search", categorycontroller.search);
+routs.get('/isActive/:id', categorycontroller.isActive);
 
-module.exports = routes;
+routs.get('/deActive/:id', categorycontroller.deActive);
+
+routs.get("/deletecategory/:id", categorycontroller.deletecategory);
+
+module.exports = routs;

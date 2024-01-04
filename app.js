@@ -31,9 +31,11 @@ app.use(passport.session());
 app.use(passport.setAuth);
 
 app.use(express.static(path.join(__dirname, "assets")));
+app.use(express.static(path.join(__dirname, "userassets")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/admin", require("./routes/admin"));
+app.use("/", require("./routes/user"))
 
 app.listen(port, (error) => {
     if (error) {

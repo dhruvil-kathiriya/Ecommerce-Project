@@ -7,7 +7,14 @@
                 <p>Add, edit or delete a Product</p>
             </div>
             <div>
-                <input type="text" placeholder="Search Products" class="form-control bg-white">
+                <form>
+                    <div class="d-flex align-items-center">
+                        <input type="text" placeholder="Search Products" class="form-control bg-white" name="search"
+                            value="<%= searchValue %>">
+                        <button type="submit" class="btn btn-md m-2 rounded font-sm hover-up"
+                            value="search">Search</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="card">
@@ -29,6 +36,7 @@
                                         <th class="text-center">Brand</th>
                                         <th class="text-center">Type</th>
                                         <th class="text-center">Product</th>
+                                        <th class="text-center">Status</th>
                                         <th class="text-end">Action</th>
                                     </tr>
                                 </thead>
@@ -61,10 +69,10 @@
                                                 </td>
                                                 <td>
                                                     <%if(pd.isActive){%>
-                                                        <a href="/admin/isActive/<%=pd.id%>"
+                                                        <a href="/admin/product/isActive/<%=pd.id%>"
                                                             class="badge rounded-pill alert-success">Active</a>
                                                         <% }else{ %>
-                                                            <a href="/admin/deActive/<%=pd.id%>"
+                                                            <a href="/admin/product/deActive/<%=pd.id%>"
                                                                 class="badge rounded-pill alert-danger">Inactive</a>
                                                             <% }%>
                                                 </td>
@@ -76,19 +84,48 @@
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item" href="#">View detail</a>
                                                             <a class="dropdown-item" href="#">Edit info</a>
-                                                            <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                            <a class="dropdown-item text-danger"
+                                                                href="/admin/product/deleteproduct/<%= pd.id %>">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <% }%>
-                                                    <% }else{ %>
                                             <tr>
                                                 <h2 class="text-center">Record Not Found</h2>
                                             </tr>
-                                            <% } %>
-                                                </tr>
+                                            <% }%>
+                                                <% }else{ %>
+                                                    <td class="text-center" colspan="9">
+                                                        <p class="text-center text-danger">Record Not Found</p>
+                                                    </td>
+                                                    <% } %>
+                                                        </tr>
                                 </tbody>
                             </table>
+                            <% if(currentPage> 0){ %>
+                                <a href="?pages=<%= currentPage - 1 %>&search=<%= searchValue %>"
+                                    class="btn btn-primary" style="padding: 10px 16px;">
+                                    Previous</a>
+                                <% } %>
+                                    <% if(currentPage> 0){ %>
+                                        <a href="?pages=<%= currentPage - 1 %>&search=<%= searchValue %>"
+                                            class="btn border" style="padding: 10px 16px;">
+                                            <%= currentPage %>
+                                        </a>
+                                        <% } %>
+                                            <a href="?pages=<%= currentPage %>&search=<%= searchValue %>"
+                                                class="btn btn-primary" style="padding: 10px 16px;">
+                                                <%= currentPage + 1 %>
+                                            </a>
+                                            <% if(totalDocument> currentPage + 1){ %>
+                                                <a href="?pages=<%= currentPage + 1 %>&search=<%= searchValue %>"
+                                                    class="btn border" style="padding: 10px 16px;">
+                                                    <%= currentPage + 2 %>
+                                                </a>
+                                                <% } %>
+                                                    <% if(totalDocument> currentPage + 1){ %>
+                                                        <a href="?pages=<%= currentPage + 1 %>&search=<%= searchValue %>"
+                                                            class="btn btn-primary" style="padding: 10px 16px;">Next</a>
+                                                        <% } %>
                         </div>
                     </div>
                 </div>

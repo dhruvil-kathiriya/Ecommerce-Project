@@ -5,15 +5,43 @@ module.exports.add_category = async (req, res) => {
 }
 
 module.exports.view_category = async (req, res) => {
-    let catdata = await category.find({});
-    return res.render("Admin_pages/View_category", {
-        catdata: catdata
-    });
+    try {
+        var search = "";
+        var page;
+        if (req.query.search) {
+            search = req.query.search;
+        }
+        if (req.query.pages) {
+            page = req.query.pages;
+        }
+        else {
+            page = 0;
+        }
+        const perPage = 4;
+        let catdata = await category.find({
+            $or: [
+                { "category_name": { $regex: ".*" + search + ".*", $options: "i" } },
+            ]
+        }).limit(perPage).skip(perPage * page)
+        let totalcatData = await category.find({
+            $or: [
+                { "category_name": { $regex: ".*" + search + ".*", $options: "i" } },
+            ]
+        }).countDocuments();
+        return res.render('Admin_pages/View_category', {
+            catdata: catdata,
+            searchValue: search,
+            totalDocument: Math.ceil(totalcatData / perPage),
+            currentPage: parseInt(page)
+        });
+    } catch (error) {
+        console.log(error);
+        return res.redirect("back")
+    }
 }
 
 module.exports.insert_category = async (req, res) => {
     try {
-
         req.body.isActive = true;
         req.body.created_date = new Date().toLocaleString();
         req.body.updated_date = new Date().toLocaleString();
@@ -34,23 +62,64 @@ module.exports.insert_category = async (req, res) => {
     }
 }
 
-// module.exports.search = async (req, res) => {
-//     try {
-//         var search = "";
-//         if (req.query.search) {
-//             search = req.query.search;
-//         }
-//         let searchData = await category.find({
-//             $or: [
-//                 { "searchName": { $regx: "." + search + ".", $options: "i" } },
-//             ]
-//         });
-//         return res.render("search", {
-//             searchData: searchData,
-//             searchvalue: search
-//         })
-//     } catch (error) {
-//         if (error) console.log(error);
-//         return res.redirect("back");
-//     }
-// }
+module.exports.isActive = async (req, res) => {
+    try {
+        if (req.params.id) {
+            let active = await category.findByIdAndUpdate(req.params.id, { isActive: false });
+            if (active) {
+                console.log("Category Deactived Successfully");
+                return res.redirect('back');
+            }
+            else {
+                console.log("Category is not Deactived");
+                return res.redirect('back');
+            }
+        }
+        else {
+            console.log("Id not Found");
+            return res.redirect('back');
+        }
+    }
+    catch (err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+};
+
+module.exports.deActive = async (req, res) => {
+    try {
+        if (req.params.id) {
+            let active = await category.findByIdAndUpdate(req.params.id, { isActive: true });
+            if (active) {
+                console.log("Category actived Successfully");
+                return res.redirect('back');
+            }
+            else {
+                console.log("Category is not Activated");
+                return res.redirect('back');
+            }
+        }
+        else {
+            console.log("Id not Found");
+            return res.redirect('back');
+        }
+    }
+    catch (err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+}
+
+module.exports.deletecategory = async (req, res) => {
+    try {
+        let deletData = await category.findByIdAndDelete(req.params.id);
+        if (deletData) {
+            console.log("Category Deleted Successfully");
+            return res.redirect('back');
+        }
+    }
+    catch (error) {
+        console.log(error);
+        return res.redirect('back');
+    }
+}

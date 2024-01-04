@@ -1,15 +1,21 @@
 const express = require("express");
-const routes = express.Router();
+const routs = express.Router();
 const product = require("../models/product");
 const productcontroller = require("../controller/productcontroller");
 const passport = require("passport");
 
-routes.get("/add_product", passport.checkAuth, productcontroller.add_product);
+routs.get("/add_product", passport.checkAuth, productcontroller.add_product);
 
-routes.get("/view_product", passport.checkAuth, productcontroller.view_product);
+routs.get("/view_product", passport.checkAuth, productcontroller.view_product);
 
-routes.post("/insert_product", productcontroller.insert_product);
+routs.post("/insert_product", product.uploadProductImage, productcontroller.insert_product);
 
-routes.post("/getBrandType", productcontroller.getBrandType)
+routs.get('/isActive/:id', productcontroller.isActive);
 
-module.exports = routes;
+routs.get('/deActive/:id', productcontroller.deActive);
+
+routs.get('/deleteproduct/:id', productcontroller.deleteproduct);
+
+routs.post("/getBrandType", productcontroller.getBrandType)
+
+module.exports = routs;

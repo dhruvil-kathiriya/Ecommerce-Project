@@ -1,15 +1,20 @@
 const express = require("express");
-const routes = express.Router();
-const brand = require("../models/brand");
+const routs = express.Router();
 const brandcontroller = require("../controller/brandcontroller");
 const passport = require("passport");
 
-routes.get("/add_brand", passport.checkAuth, brandcontroller.add_brand);
+routs.get("/add_brand", passport.checkAuth, brandcontroller.add_brand);
 
-routes.get("/view_brand", passport.checkAuth, brandcontroller.view_brand);
+routs.get("/view_brand", passport.checkAuth, brandcontroller.view_brand);
 
-routes.post("/insert_brand", brandcontroller.insert_brand);
+routs.post("/insert_brand", brandcontroller.insert_brand);
 
-routes.post("/getextracategoryData", brandcontroller.getextracategoryData)
+routs.get('/isActive/:id', brandcontroller.isActive);
 
-module.exports = routes;
+routs.get('/deActive/:id', brandcontroller.deActive);
+
+routs.get("/deletebrand/:id", brandcontroller.deletebrand);
+
+routs.post("/getextracategoryData", brandcontroller.getextracategoryData)
+
+module.exports = routs;

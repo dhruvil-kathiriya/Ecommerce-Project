@@ -22,11 +22,39 @@ module.exports.add_brand = async (req, res) => {
 }
 
 module.exports.view_brand = async (req, res) => {
-    let brandData = await brand.find({}).populate("subcategoryId").populate("categoryId").populate("extracategoryId").exec();
-    // console.log(brandData);
-    return res.render("Admin_pages/View_brand", {
-        brandData: brandData
-    });
+    try {
+        var search = "";
+        var page;
+        if (req.query.search) {
+            search = req.query.search;
+        }
+        if (req.query.pages) {
+            page = req.query.pages;
+        }
+        else {
+            page = 0;
+        }
+        const perPage = 2;
+        let brandData = await brand.find({
+            $or: [
+                { "brand_name": { $regex: ".*" + search + ".*", $options: "i" } },
+            ]
+        }).limit(perPage).skip(perPage * page).populate(["subcategoryId", "categoryId", "extracategoryId"]).exec();
+        let totalbrandData = await brand.find({
+            $or: [
+                { "brand_name": { $regex: ".*" + search + ".*", $options: "i" } },
+            ]
+        }).countDocuments();
+        return res.render('Admin_pages/View_brand', {
+            brandData: brandData,
+            searchValue: search,
+            totalDocument: Math.ceil(totalbrandData / perPage),
+            currentPage: parseInt(page)
+        });
+    } catch (error) {
+        console.log(error);
+        return res.redirect("back")
+    }
 }
 
 module.exports.insert_brand = async (req, res) => {
@@ -36,11 +64,11 @@ module.exports.insert_brand = async (req, res) => {
         req.body.updated_date = new Date().toLocaleString();
         let brandData = await brand.create(req.body);
         if (brandData) {
-            console.log("brand Added Successfully");
+            console.log("Brand Added Successfully");
             return res.redirect("back");
         }
         else {
-            console.log("brand is Not Added");
+            console.log("Brand is Not Added");
             return res.redirect("back");
         }
     } catch (error) {
@@ -50,6 +78,69 @@ module.exports.insert_brand = async (req, res) => {
     }
 }
 
+
+//IsActive Button 
+module.exports.isActive = async (req, res) => {
+    try {
+        if (req.params.id) {
+            let active = await brand.findByIdAndUpdate(req.params.id, { isActive: false });
+            if (active) {
+                console.log("Brand Deactived Successfully");
+                return res.redirect('back');
+            }
+            else {
+                console.log("Brand is not Deactived");
+                return res.redirect('back');
+            }
+        }
+        else {
+            console.log("Id not Found");
+            return res.redirect('back');
+        }
+    }
+    catch (err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+};
+
+module.exports.deActive = async (req, res) => {
+    try {
+        if (req.params.id) {
+            let active = await brand.findByIdAndUpdate(req.params.id, { isActive: true });
+            if (active) {
+                console.log("Brand actived Successfully");
+                return res.redirect('back');
+            }
+            else {
+                console.log("Brand is not Activated");
+                return res.redirect('back');
+            }
+        }
+        else {
+            console.log("Id not Found");
+            return res.redirect('back');
+        }
+    }
+    catch (err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+}
+
+module.exports.deletebrand = async (req, res) => {
+    try {
+        let deletData = await brand.findByIdAndDelete(req.params.id);
+        if (deletData) {
+            console.log("Brand Deleted Successfully");
+            return res.redirect('back');
+        }
+    }
+    catch (error) {
+        console.log(error);
+        return res.redirect('back');
+    }
+}
 
 module.exports.getextracategoryData = async (req, res) => {
     try {

@@ -4,7 +4,6 @@ const path = require("path");
 const imagepath = "/uploads/Product_image";
 const multiImagepath = "/uploads/Product_multiple_images"
 
-
 const productschema = mongoose.Schema({
     categoryId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -86,7 +85,7 @@ const ImageStorage = multer.diskStorage({
     }
 });
 
-productschema.statics.uploadProductImage = multer({ storage: ImageStorage }).fields([{ name: "product_image", maxcount: 1 }, { name: "product_multiple_image", maxcount: 10 }]);
+productschema.statics.uploadProductImage = multer({ storage: ImageStorage }).fields([{ name: "product_image", maxcount: 1 }, { name: "product_multiple_image", maxcount: 10 }]); // Upload Multiple Images
 
 productschema.statics.imagepath = imagepath;
 productschema.statics.multiImagepath = multiImagepath;

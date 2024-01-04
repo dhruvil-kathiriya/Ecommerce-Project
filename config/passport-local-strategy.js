@@ -2,6 +2,7 @@ const passport = require('passport');
 const passportlocal = require('passport-local').Strategy;
 const Admin = require("../models/admin");
 
+// CHECK AUTHENTICATION
 passport.use(new passportlocal({
     usernameField: "email"
 }, async (email, password, done) => {
@@ -20,10 +21,12 @@ passport.use(new passportlocal({
     }
 }))
 
+// SERIALIZE USER
 passport.serializeUser(async (user, done) => {
     return done(null, user.id);
 })
 
+// DESERIALIZE USER
 passport.deserializeUser(async (id, done) => {
     let adminRecord = await Admin.findById(id);
     if (adminRecord) {
@@ -34,6 +37,7 @@ passport.deserializeUser(async (id, done) => {
     }
 })
 
+// SET AUTHEMNTICATION 
 passport.setAuth = function (req, res, next) {
     if (req.isAuthenticated()) {
         res.locals.user = req.user
@@ -41,6 +45,7 @@ passport.setAuth = function (req, res, next) {
     return next();
 }
 
+// CHECK AUTHENTICATION
 passport.checkAuth = function (req, res, next) {
     if (req.isAuthenticated()) {
         next();

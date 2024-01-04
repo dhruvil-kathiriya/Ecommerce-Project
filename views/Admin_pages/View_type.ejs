@@ -7,7 +7,14 @@
                 <p>Add, edit or delete a Type</p>
             </div>
             <div>
-                <input type="text" placeholder="Search Types" class="form-control bg-white">
+                <form>
+                    <div class="d-flex align-items-center">
+                        <input type="text" placeholder="Search Types" class="form-control bg-white" name="search"
+                            value="<%= searchValue %>">
+                        <button type="submit" class="btn btn-md m-2 rounded font-sm hover-up"
+                            value="search">Search</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="card">
@@ -52,21 +59,21 @@
                                                     <%= td.extracategoryId.extracategory_name %>
                                                 </td>
                                                 <td class="text-center">
-                                                    <%= td.brand.brandId.brand_name %>
+                                                    <%= td.brandId.brand_name %>
                                                 </td>
                                                 <td class="text-center">
-                                                    <%= td.type.type_name %>
+                                                    <%= td.type_name %>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <%if(td.isActive){%>
-                                                        <a href="/admin/isActive/<%=td.id%>"
+                                                        <a href="/admin/type/isActive/<%=td.id%>"
                                                             class="badge rounded-pill alert-success">Active</a>
                                                         <% }else{ %>
-                                                            <a href="/admin/deActive/<%=td.id%>"
+                                                            <a href="/admin/type/deActive/<%=td.id%>"
                                                                 class="badge rounded-pill alert-danger">Inactive</a>
                                                             <% }%>
                                                 </td>
-                                                <td class="text-end">
+                                                <td class="text-center">
                                                     <div class="dropdown">
                                                         <a href="#" data-bs-toggle="dropdown"
                                                             class="btn btn-light rounded btn-sm font-sm"> <i
@@ -74,20 +81,46 @@
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item" href="#">View detail</a>
                                                             <a class="dropdown-item" href="#">Edit info</a>
-                                                            <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                            <a class="dropdown-item text-danger"
+                                                                href="/admin/type/deletetype/<%= td.id %>">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <% }%>
                                                     <% }else{ %>
-                                            <tr>
-                                                <h2 class="text-center">Record Not Found</h2>
+                                                        <td class="text-center" colspan="7">
+                                                            <p class="text-center text-danger">Record Not Found</p>
+                                                        </td>
+                                                        <% } %>
                                             </tr>
-                                            <% } %>
-                                                </tr>
 
                                 </tbody>
                             </table>
+                            <% if(currentPage> 0){ %>
+                                <a href="?pages=<%= currentPage - 1 %>&search=<%= searchValue %>"
+                                    class="btn btn-primary" style="padding: 10px 16px;">
+                                    Previous</a>
+                                <% } %>
+                                    <% if(currentPage> 0){ %>
+                                        <a href="?pages=<%= currentPage - 1 %>&search=<%= searchValue %>"
+                                            class="btn border" style="padding: 10px 16px;">
+                                            <%= currentPage %>
+                                        </a>
+                                        <% } %>
+                                            <a href="?pages=<%= currentPage %>&search=<%= searchValue %>"
+                                                class="btn btn-primary" style="padding: 10px 16px;">
+                                                <%= currentPage + 1 %>
+                                            </a>
+                                            <% if(totalDocument> currentPage + 1){ %>
+                                                <a href="?pages=<%= currentPage + 1 %>&search=<%= searchValue %>"
+                                                    class="btn border" style="padding: 10px 16px;">
+                                                    <%= currentPage + 2 %>
+                                                </a>
+                                                <% } %>
+                                                    <% if(totalDocument> currentPage + 1){ %>
+                                                        <a href="?pages=<%= currentPage + 1 %>&search=<%= searchValue %>"
+                                                            class="btn btn-primary" style="padding: 10px 16px;">Next</a>
+                                                        <% } %>
                         </div>
                     </div>
                 </div>

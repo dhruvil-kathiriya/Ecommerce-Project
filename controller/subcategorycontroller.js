@@ -1,5 +1,6 @@
 const subcategorys = require("../models/subcategory")
 const category = require("../models/category");
+const subcategory = require("../models/subcategory");
 
 module.exports.add_subcategory = async (req, res) => {
     let catData = await category.find({});
@@ -8,9 +9,8 @@ module.exports.add_subcategory = async (req, res) => {
 
 module.exports.insert_subcategory = async (req, res) => {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         req.body.isActive = true;
-
         req.body.created_date = new Date().toLocaleString();
         req.body.updated_date = new Date().toLocaleString();
         let subcatData11 = await subcategorys.create(req.body);
@@ -30,7 +30,100 @@ module.exports.insert_subcategory = async (req, res) => {
 }
 
 module.exports.view_subcategory = async (req, res) => {
-    let subcatData = await subcategorys.find({}).populate("categoryId").exec();
-    // console.log(subcatData);
-    return res.render("Admin_pages/View_subcategory", { subcatData: subcatData });
+    try {
+        var search = "";
+        var page;
+        if (req.query.search) {
+            search = req.query.search;
+        }
+        if (req.query.pages) {
+            page = req.query.pages;
+        }
+        else {
+            page = 0;
+        }
+        const perPage = 4;
+        let subcatData = await subcategory.find({
+            $or: [
+                { "subcategory_name": { $regex: ".*" + search + ".*", $options: "i" } },
+            ]
+        }).limit(perPage).skip(perPage * page).populate("categoryId").exec(); // Join Tables
+        let totalsubcatData = await subcategory.find({
+            $or: [
+                { "subcategory_name": { $regex: ".*" + search + ".*", $options: "i" } },
+            ]
+        }).countDocuments();
+        // console.log(subcatData);
+        return res.render('Admin_pages/View_subcategory', {
+            subcatData: subcatData,
+            searchValue: search,
+            totalDocument: Math.ceil(totalsubcatData / perPage),
+            currentPage: parseInt(page)
+        });
+    } catch (error) {
+        console.log(error);
+        return res.redirect("back")
+    }
+}
+
+module.exports.isActive = async (req, res) => {
+    try {
+        if (req.params.id) {
+            let active = await subcategory.findByIdAndUpdate(req.params.id, { isActive: false });
+            if (active) {
+                console.log("Subcategory Deactived Successfully");
+                return res.redirect('back');
+            }
+            else {
+                console.log("Subcategory is not Deactived");
+                return res.redirect('back');
+            }
+        }
+        else {
+            console.log("Id not Found");
+            return res.redirect('back');
+        }
+    }
+    catch (err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+};
+
+module.exports.deActive = async (req, res) => {
+    try {
+        if (req.params.id) {
+            let active = await subcategory.findByIdAndUpdate(req.params.id, { isActive: true });
+            if (active) {
+                console.log("Subcategory actived Successfully");
+                return res.redirect('back');
+            }
+            else {
+                console.log("Subcategory is not Activated");
+                return res.redirect('back');
+            }
+        }
+        else {
+            console.log("Id not Found");
+            return res.redirect('back');
+        }
+    }
+    catch (err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+}
+
+module.exports.deletesubcategory = async (req, res) => {
+    try {
+        let deletData = await subcategory.findByIdAndDelete(req.params.id);
+        if (deletData) {
+            console.log("Subcategory Deleted Successfully");
+            return res.redirect('back');
+        }
+    }
+    catch (error) {
+        console.log(error);
+        return res.redirect('back');
+    }
 }

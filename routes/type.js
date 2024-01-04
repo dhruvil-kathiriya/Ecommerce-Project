@@ -1,15 +1,20 @@
 const express = require("express");
-const routes = express.Router();
-const type = require("../models/type");
+const routs = express.Router();
 const typecontroller = require("../controller/typecontroller");
 const passport = require("passport");
 
-routes.get("/add_type", passport.checkAuth, typecontroller.add_type);
+routs.get("/add_type", passport.checkAuth, typecontroller.add_type);
 
-routes.get("/view_type", passport.checkAuth, typecontroller.view_type);
+routs.get("/view_type", passport.checkAuth, typecontroller.view_type);
 
-routes.post("/insert_type", typecontroller.insert_type);
+routs.post("/insert_type", typecontroller.insert_type);
 
-routes.post('/getextbrandData', typecontroller.getBrand)
+routs.get('/isActive/:id', typecontroller.isActive);
 
-module.exports = routes;
+routs.get('/deActive/:id', typecontroller.deActive);
+
+routs.get('/deletetype/:id', typecontroller.deletetype);
+
+routs.post('/getextbrandData', typecontroller.getBrand)
+
+module.exports = routs;

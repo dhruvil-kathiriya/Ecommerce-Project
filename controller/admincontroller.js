@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require("fs")
 const Admin = require("../models/admin");
 
-//Admin Panel Render 
 module.exports.dashboard = async (req, res) => {
     let adminData = await Admin.find({});
     return res.render("Admin_pages/Admin_Dashboard", {
@@ -11,12 +10,10 @@ module.exports.dashboard = async (req, res) => {
 
 };
 
-//Add Admin Page Render
 module.exports.add_admin = async (req, res) => {
     return res.render("Admin_pages/Add_admin");
 };
 
-//Insert Admin Data
 module.exports.insert_admin = async (req, res) => {
     try {
         let imagePath = ""
@@ -45,7 +42,7 @@ module.exports.insert_admin = async (req, res) => {
     }
 };
 
-//View admin Page Render
+// VIEW PAGE WITH SEARCHING & PAGINATION
 module.exports.view_admin = async (req, res) => {
     try {
         var search = "";
@@ -59,7 +56,7 @@ module.exports.view_admin = async (req, res) => {
         else {
             page = 0;
         }
-        const perPage = 2;
+        const perPage = 2; // How Many Records Per Page to Show
         let adminData = await Admin.find({
             $or: [
                 { "name": { $regex: ".*" + search + ".*", $options: "i" } },
@@ -86,7 +83,6 @@ module.exports.view_admin = async (req, res) => {
     }
 };
 
-//View Profile Page Render
 module.exports.view_profile = async (req, res) => {
     var adminRecord = req.user;
     return res.render("Admin_pages/View_profile", {
@@ -102,22 +98,25 @@ module.exports.updatepassword = async (req, res) => {
     return res.redirect("/admin/");
 };
 
-//IsActive Button 
+
+module.exports.update_password = async (req, res) => {
+    return res.render("/Admin_pages/Update_password")
+}
 module.exports.isActive = async (req, res) => {
     try {
         if (req.params.id) {
             let active = await Admin.findByIdAndUpdate(req.params.id, { isActive: false });
             if (active) {
-                console.log("Data Deactived Successfully");
+                console.log("Admin Deactived Successfully");
                 return res.redirect('back');
             }
             else {
-                console.log("Record is not Deactived");
+                console.log("Admin is not Deactived");
                 return res.redirect('back');
             }
         }
         else {
-            console.log("Id not Found");
+            console.log("Id is not Available");
             return res.redirect('back');
         }
     }
@@ -127,7 +126,6 @@ module.exports.isActive = async (req, res) => {
     }
 };
 
-//Deactiovate Button
 module.exports.deActive = async (req, res) => {
     try {
         if (req.params.id) {
@@ -152,7 +150,6 @@ module.exports.deActive = async (req, res) => {
     }
 }
 
-//Delete Admin
 module.exports.deleteAdmin = async (req, res) => {
     try {
         let oldData = await Admin.findById(req.params.id);
@@ -160,7 +157,7 @@ module.exports.deleteAdmin = async (req, res) => {
             var oldImage = oldData.admin_image;
             if (oldImage) {
                 let fullPath = path.join(__dirname, '..', oldData.admin_image);
-                await fs.unlinkSync(fullPath);
+                await fs.unlinkSync(fullPath); // To Remove Image From Uploads Folder
                 let deletData = await Admin.findByIdAndDelete(req.params.id);
                 if (deletData) {
                     console.log("Record & Image Deleted Succesfully");
