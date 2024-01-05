@@ -155,12 +155,12 @@ module.exports.Checkotp = async (req, res) => {
                     port: 465,
                     secure: true,
                     auth: {
-                        user: "testingcafe156@gmail.com",
-                        pass: "gtbsdgbhersneecn",
+                        user: `${process.env.SMTP_user}`,
+                        pass: `${process.env.SMTP_pass}`,
                     },
                 });
                 const info = await transporter.sendMail({
-                    from: '"testincafe156@gmail.com',
+                    from: `${process.env.SMTP_user}`,
                     to: req.body.email,
                     subject: "OTP",
                     text: "Your OTP is here!",
