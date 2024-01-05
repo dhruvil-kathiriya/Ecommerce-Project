@@ -23,15 +23,22 @@ module.exports.add_product = async (req, res) => {
 
 module.exports.insert_product = async (req, res) => {
     try {
+        // console.log(req.body);
+        // console.log(req.file);
+        let singleimag = '';
+        let multiimage = [];
+        if (req.files) {
+            singleimag = await product.imagePath + '/' + req.files.product_image[0].filename;
+        }
+        for (var i = 0; i < req.files.product_multiple_image.length; i++) {
+            multiimage.push(product.multiImagepath + "/" + req.files.product_multiple_image[i].filename);
+        }
+        req.body.product_image = singleimag;
+        req.body.product_multiple_image = multiimage;
         req.body.isActive = true;
         req.body.created_date = new Date().toLocaleString();
         req.body.updated_date = new Date().toLocaleString();
-        let imagePath = ""
-        if (req.file) {
-            imagePath = product.imageAdminPath + "/" + req.file.filename;
-        }
-        req.body.product_image = imagePath;
-        let addData = await product.create(req.body);
+        let productData = await product.create(req.body);
         if (productData) {
             console.log("Product Added Successfully");
             return res.redirect("back");
@@ -71,7 +78,7 @@ module.exports.view_product = async (req, res) => {
                 { "product_name": { $regex: ".*" + search + ".*", $options: "i" } },
             ]
         }).countDocuments();
-        console.log(productData);
+        // console.log(productData);
         return res.render('Admin_pages/View_product', {
             productData: productData,
             searchValue: search,

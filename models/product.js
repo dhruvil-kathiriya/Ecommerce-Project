@@ -7,23 +7,28 @@ const multiImagepath = "/uploads/Product_multiple_images"
 const productschema = mongoose.Schema({
     categoryId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "category"
+        ref: "category",
+        required: true
     },
     subcategoryId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "subcategory"
+        ref: "subcategory",
+        required: true
     },
     extracategoryId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "extracategory"
+        ref: "extracategory",
+        required: true
     },
     brandId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "brand"
+        ref: "brand",
+        required: true
     },
     typeId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "type"
+        ref: "type",
+        required: true
     },
     product_name: {
         type: String,
@@ -74,7 +79,7 @@ const productschema = mongoose.Schema({
 const ImageStorage = multer.diskStorage({
     destination: function (req, file, cb) {
         if (file.fieldname == "product_image") {
-            cb(null, path.join(__dirname, "..", imagePath));
+            cb(null, path.join(__dirname, "..", imagepath));
         }
         else {
             cb(null, path.join(__dirname, "..", multiImagepath));

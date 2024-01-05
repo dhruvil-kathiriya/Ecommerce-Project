@@ -6,7 +6,7 @@ const Admin = require("../models/admin");
 passport.use(new passportlocal({
     usernameField: "email"
 }, async (email, password, done) => {
-    console.log(email, password);
+    // console.log(email, password);
     var adminData = await Admin.findOne({ email: email });
     if (adminData) {
         if (adminData.password == password) {

@@ -37,7 +37,7 @@
                                         <th class="text-center">Type</th>
                                         <th class="text-center">Product</th>
                                         <th class="text-center">Status</th>
-                                        <th class="text-end">Action</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,15 +59,15 @@
                                                     <%= pd.extracategoryId.extracategory_name %>
                                                 </td>
                                                 <td class="text-center">
-                                                    <%= pd.brand.brand_name %>
+                                                    <%= pd.brandId.brand_name %>
                                                 </td>
                                                 <td class="text-center">
-                                                    <%= pd.type.type_name %>
+                                                    <%= pd.typeId.type_name %>
                                                 </td>
                                                 <td class="text-center">
-                                                    <%= pd.product.product_name %>
+                                                    <%= pd.product_name %>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <%if(pd.isActive){%>
                                                         <a href="/admin/product/isActive/<%=pd.id%>"
                                                             class="badge rounded-pill alert-success">Active</a>
@@ -76,29 +76,21 @@
                                                                 class="badge rounded-pill alert-danger">Inactive</a>
                                                             <% }%>
                                                 </td>
-                                                <td class="text-end">
+                                                <td class="text-center">
                                                     <div class="dropdown">
-                                                        <a href="#" data-bs-toggle="dropdown"
-                                                            class="btn btn-light rounded btn-sm font-sm"> <i
-                                                                class="material-icons md-more_horiz"></i> </a>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">View detail</a>
-                                                            <a class="dropdown-item" href="#">Edit info</a>
-                                                            <a class="dropdown-item text-danger"
-                                                                href="/admin/product/deleteproduct/<%= pd.id %>">Delete</a>
-                                                        </div>
+                                                        <a class="dropdown-item text-danger"
+                                                            href="/admin/product/deleteproduct/<%= pd.id %>"><i
+                                                                class="material-icons md-delete_forever"></i>Delete</a>
                                                     </div>
                                                 </td>
-                                            <tr>
-                                                <h2 class="text-center">Record Not Found</h2>
+
+                                                <% }%>
+                                                    <% }else{ %>
+                                                        <td class="text-center" colspan="9">
+                                                            <p class="text-center text-danger">Record Not Found</p>
+                                                        </td>
+                                                        <% } %>
                                             </tr>
-                                            <% }%>
-                                                <% }else{ %>
-                                                    <td class="text-center" colspan="9">
-                                                        <p class="text-center text-danger">Record Not Found</p>
-                                                    </td>
-                                                    <% } %>
-                                                        </tr>
                                 </tbody>
                             </table>
                             <% if(currentPage> 0){ %>

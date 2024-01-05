@@ -24,20 +24,23 @@ routs.get("/forgptpass", async (req, res) => {
     return res.render("Admin_pages/Forgot_pass");
 });
 
-routs.post("/verifyotp", async (req, res) => {
-    return res.render("Admin_pages/Verifyotp");
-});
-
 routs.get("/setnewpassword", async (req, res) => {
     return res.render("Admin_pages/Setnewpassword")
 });
 
+routs.post("/Checkotp", adminController.Checkotp);
+
+routs.post("/verifyotp", adminController.verifyotp);
+
 routs.post("/updatepassword", adminController.updatepassword);
 
-routs.get("/update_password", adminController.update_password)
+routs.get("/update_password", adminController.update_password);
+
+routs.post("/updatenewpassword", adminController.updatenewpassword)
 
 routs.get("/logout", async (req, res) => {
-    req.session.destroy() // To Remove Session Data From Browser
+    req.session.destroy(); // To Remove Session Data From Browser
+    res.clearCookie("Ecom");
     return res.redirect("/admin/");
 });
 

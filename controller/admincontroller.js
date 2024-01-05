@@ -1,13 +1,14 @@
 const path = require('path');
 const fs = require("fs")
 const Admin = require("../models/admin");
+const nodemailer = require("nodemailer");
+const { error } = require('console');
 
 module.exports.dashboard = async (req, res) => {
     let adminData = await Admin.find({});
     return res.render("Admin_pages/Admin_Dashboard", {
         "adminData": adminData,
     });
-
 };
 
 module.exports.add_admin = async (req, res) => {
@@ -90,18 +91,154 @@ module.exports.view_profile = async (req, res) => {
     });
 };
 
-module.exports.checklogin = async (req, res) => {
-    return res.redirect("/admin/dashboard");
+module.exports.verifyotp = async (req, res) => {
+    try {
+        if (req.cookie.OTP == req.body.otp) {
+            return res.render("Admin_pages/Setnewpassword");
+        }
+        else {
+            console.log("otp Does not Match! Enter Again");
+            return res.redirect("back")
+        }
+    } catch (error) {
+        if (error) console.log(error);
+
+    }
 };
+
+// Check Main Login
+module.exports.checklogin = async (req, res) => {
+    return await res.render("Admin_pages/Admin_dashboard")
+}
 
 module.exports.updatepassword = async (req, res) => {
-    return res.redirect("/admin/");
+    try {
+        if (req.body.npassword == req.body.cpassword) {
+            let email = req.cookies.email;
+            let checkEmail = await Admin.findOne({ email: email });
+            if (checkEmail) {
+                let resetPassword = await Admin.findByIdAndUpdate(checkEmail.id, { password: req.body.npassword });
+                if (resetPassword) {
+                    res.clearCookie('otp');
+                    res.clearCookie('email');
+                    return res.redirect('/admin/');
+                }
+                else {
+                    console.log("Password Not Changed");
+                    return res.redirect('back');
+                }
+            }
+            else {
+                console.log("Email Not Found");
+                return res.redirect('back');
+            }
+        }
+        else {
+            console.log("Password Not Matched");
+            return res.redirect('back');
+        }
+    } catch (error) {
+        if (error) console.log(error);
+        return res.redirect("back")
+    }
 };
 
+module.exports.Checkotp = async (req, res) => {
+    try {
+        console.log(req.body);
+        if (req.body) {
+            let OTP = Math.floor(Math.random() * 90000) + 10000;
+            let checkMail = await Admin.findOne({ email: req.body.email });
+            if (checkMail) {
+                const transporter = nodemailer.createTransport({
+                    host: "smtp.gmail.com",
+                    port: 465,
+                    secure: true,
+                    auth: {
+                        user: "testingcafe156@gmail.com",
+                        pass: "gtbsdgbhersneecn",
+                    },
+                });
+                const info = await transporter.sendMail({
+                    from: '"testincafe156@gmail.com',
+                    to: req.body.email,
+                    subject: "OTP",
+                    text: "Your OTP is here!",
+                    html: `<b>${OTP}</b>`,
+                });
+                res.cookie("otp", OTP);
+                res.cookie('email', checkMail.email);
+                if (info) {
+                    console.log("Check your mail");
+                    return res.render("Admin_pages/Verifyotp");
+                } else {
+                    console.log("Something went wrong");
+                    return res.redirect("back");
+                }
+            } else {
+                console.log("Invalid email");
+                return res.redirect("back");
+            }
+        } else {
+            console.log("Enter your email");
+            return res.redirect("back");
+        }
+    } catch (err) {
+        console.log(err);
+        return res.redirect("back");
+    }
+}
 
 module.exports.update_password = async (req, res) => {
-    return res.render("/Admin_pages/Update_password")
+    return res.render("Admin_pages/Update_password")
 }
+
+module.exports.updatenewpassword = async (req, res) => {
+    try {
+        // console.log(req.body);
+        let oldData = req.user;
+        if (oldData) {
+            if (oldData.password == req.body.oldpass) {
+                if (req.body.oldpass != req.body.newpass) {
+                    if (req.body.newpass == req.body.conpass) {
+                        let oldAdmin = await Admin.findById(oldData._id);
+                        if (oldAdmin) {
+                            let editPassword = await Admin.findByIdAndUpdate(oldAdmin._id, { 'password': req.body.newpass });
+                            if (editPassword) {
+                                return res.redirect('/admin/logout');
+                            }
+                            else {
+                                console.log("Password is Not Changed");
+                            }
+                        }
+                        else {
+                            console.log("Data Not Found");
+                        }
+                    }
+                    else {
+                        console.log("New & Confirm Password Does Not Match");
+                    }
+                }
+                else {
+                    console.log("Current & New Passwords Are Same");
+                    return res.redirect("back");
+                }
+            }
+            else {
+                console.log("Current Password Not Matched");
+            }
+        }
+        else {
+            console.log('Data Not Found');
+        }
+        return res.redirect('back');
+
+    } catch (error) {
+        console.log(error);
+        return res.redirect("back");
+    }
+}
+
 module.exports.isActive = async (req, res) => {
     try {
         if (req.params.id) {

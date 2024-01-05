@@ -32,8 +32,8 @@
                                         </th>
                                         <th class="text-center">Category</th>
                                         <th class="text-center">Subcategory</th>
-                                        <th class="text-end">Status</th>
-                                        <th class="text-end">Action</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,15 +65,9 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="dropdown">
-                                                        <a href="#" data-bs-toggle="dropdown"
-                                                            class="btn btn-light rounded btn-sm font-sm"> <i
-                                                                class="material-icons md-more_horiz"></i> </a>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#">View detail</a>
-                                                            <a class="dropdown-item" href="#">Edit info</a>
-                                                            <a class="dropdown-item text-danger"
-                                                                href="/admin/subcategory/deletesubcategory/<%= sctdata.id %>">Delete</a>
-                                                        </div>
+                                                        <a class="dropdown-item text-danger"
+                                                            href="/admin/subcategory/deletesubcategory/<%= sctdata.id %>"><i
+                                                                class="material-icons md-delete_forever"></i>Delete</a>
                                                     </div>
                                                 </td>
                                             </tr>

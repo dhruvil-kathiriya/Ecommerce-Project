@@ -1,7 +1,15 @@
 const express = require('express');
 const port = 8002;
 const path = require('path');
-const db = require('./config/mongoose')
+// const db = require('./config/mongoose');
+require('dotenv').config();
+const mongoose = require("mongoose");
+
+mongoose.connect(`mongodb+srv://Dhruvil:Dhruvil%40156@ecomcluster.tug8vgv.mongodb.net/`)
+    .then(() => console.log('Database Connected'))
+    .catch((err) => console.log(err));
+
+
 const app = express();
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
