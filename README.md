@@ -26,7 +26,7 @@ This E-commerce project is aimed at providing a comprehensive platform for onlin
 - Order history and tracking
 - Admin panel to manage categories, subcategories, Brands, Types
   and products
-- Payment integration (PayPal, Stripe etc.)
+- Payment integration
 
 ## Installation
 
@@ -51,6 +51,20 @@ npm start
 ```
 
 This will start the server, and you can access the application in your web browser by visiting http://localhost:9009.
+
+## Usage
+
+Both the admin backend and user frontend are served from the same codebase and accessible via:
+
+- User facing storefront: `/`
+- Admin area: `/admin`
+
+## Admin Credentials
+
+The admin panel can be accessed at /admin. Default admin login credentials are:
+
+_Email:_ admin@gmail.com
+_Password:_ admin123
 
 #### Technologies Used
 
