@@ -7,7 +7,6 @@ This repository contains an E-commerce project developed using Node.js.
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
 - [License](#license)
@@ -20,10 +19,14 @@ This E-commerce project is aimed at providing a comprehensive platform for onlin
 
 - User authentication and authorization
 - Product catalog with detailed information
-- Shopping cart functionality
+- Front-end UI allowing users to view and search products
+- Sorting and filtering of products
+- Shopping cart and checkout functionality
 - Checkout process for purchasing products
 - Order history and tracking
-- Admin panel for managing categories, subcategories, Brands, Types, products, orders, and users
+- Admin panel to manage categories, subcategories, Brands, Types
+  and products
+- Payment integration (PayPal, Stripe etc.)
 
 ## Installation
 
@@ -33,20 +36,28 @@ To run this project locally, follow these steps:
 2. Navigate to the project directory: `cd Ecommerce-Project`
 3. Install dependencies: `npm install`
 
-## Usage
+```javascript
+npm init
+```
+
+Configure `.env`
+
+Copy the `.env.example` file to `.env` and update the MongoDB URI and other environment variables.
 
 Once the installation is complete, you can start the server using the following command:
 
 ```bash
 npm start
 ```
+
 This will start the server, and you can access the application in your web browser by visiting http://localhost:9009.
 
 #### Technologies Used
 
 - Node.js
 - Express.js
-- MongoDB 
+- MongoDB & Mongoose
+- EJS Templating
 - HTML/CSS/JavaScript/Bootstrap
 
 #### Contributing
@@ -56,4 +67,3 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 #### License
 
 This project is open-sourced under the [MIT License](https://choosealicense.com/licenses/mit/)
-
