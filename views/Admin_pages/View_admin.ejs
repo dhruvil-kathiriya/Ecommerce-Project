@@ -83,7 +83,12 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="dropdown">
-                                                        <a class="dropdown-item text-danger"
+                                                        <a class="dropdown-item text-secondary border rounded"
+                                                            href="/admin/updateAdmin/<%=ad.id%>"><i
+                                                                class="material-icons md-edit"></i>Update</a>
+                                                    </div>
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-item text-danger border rounded"
                                                             href="/admin/deleteAdmin/<%=ad.id%>"><i
                                                                 class="material-icons md-delete_forever"></i>Delete</a>
                                                     </div>
@@ -92,7 +97,7 @@
                                             <% }%>
                                                 <% }else{ %>
                                                     <tr>
-                                                        <h2 class="text-center">Record Not Found</h2>
+                                                        <h2 class="text-center">No Record Found</h2>
                                                     </tr>
                                                     <% } %>
                                 </tbody>

@@ -58,7 +58,12 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="dropdown">
-                                                        <a class="dropdown-item text-danger"
+                                                        <a class="dropdown-item text-secondary border rounded"
+                                                            href="/admin/category/updatecategory/<%= ctdata.id %>"><i
+                                                                class="material-icons md-edit"></i>Update</a>
+                                                    </div>
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-item text-danger border rounded"
                                                             href="/admin/category/deletecategory/<%= ctdata.id %>"><i
                                                                 class="material-icons md-delete_forever"></i>Delete</a>
                                                     </div>
@@ -67,7 +72,7 @@
                                             <% }%>
                                                 <% }else{ %>
                                                     <td class="text-center" colspan="3">
-                                                        <p class="text-center text-danger">Record Not Found</p>
+                                                        <p class="text-center text-danger">No Record Found</p>
                                                     </td>
                                                     <% } %>
                                                         </tr>
