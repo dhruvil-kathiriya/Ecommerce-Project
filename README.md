@@ -64,6 +64,7 @@ Both the admin backend and user frontend are served from the same codebase and a
 The admin panel can be accessed at /admin. Default admin login credentials are:
 
 _Email:_ admin@gmail.com
+
 _Password:_ admin123
 
 #### Technologies Used
