@@ -93,7 +93,7 @@ module.exports.view_product = async (req, res) => {
         ],
       })
       .countDocuments();
-    // console.log(productData);
+    console.log(productData);
     return res.render("Admin_pages/View_product", {
       productData: productData,
       searchValue: search,

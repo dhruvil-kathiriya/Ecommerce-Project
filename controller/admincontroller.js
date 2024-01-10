@@ -87,7 +87,7 @@ module.exports.view_admin = async (req, res) => {
 module.exports.updateAdmin = async (req, res) => {
   try {
     let oldData = await Admin.findById(req.params.id);
-    console.log(oldData);
+    // console.log(oldData);
     return res.render("Admin_pages/Update_admin", {
       oldData: oldData,
     });
@@ -97,22 +97,26 @@ module.exports.updateAdmin = async (req, res) => {
   }
 };
 
-module.exports.edit_admin = async (req, res) => {
+module.exports.editAdmin = async (req, res) => {
   try {
-    let oldData = await Admin.findById(req.body.EditId);
+    console.log(req.body);
+    console.log(req.file);
+    let oldadmin = await Admin.findById(req.body.EditId);
+    console.log(oldadmin);
+    console.log(req.body);
     if (req.file) {
-      if (oldData.admin_image) {
-        let fullpath = path.join(__dirname, "..", oldData.admin_image);
+      if (oldadmin.admin_image) {
+        let fullpath = path.join(__dirname, "..", oldadmin.admin_image);
         await fs.unlinkSync(fullpath);
       }
       var imagePath = "";
       imagePath = Admin.imgModel + "/" + req.file.filename;
       req.body.admin_image = imagePath;
     } else {
-      req.body.admin_image = oldData.admin_image;
+      req.body.admin_image = oldadmin.admin_image;
     }
     await Admin.findByIdAndUpdate(req.body.EditId, req.body);
-    return res.redirect("Admin_pages/View_admin");
+    return res.redirect("/admin/logout");
   } catch (err) {
     console.log(err);
     return res.redirect("back");

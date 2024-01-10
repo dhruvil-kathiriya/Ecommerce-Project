@@ -30,12 +30,13 @@
                                                 <input class="form-check-input" type="checkbox" value="" />
                                             </div>
                                         </th>
-                                        <th class="text-center">Category</th>
-                                        <th class="text-center">Subcategory</th>
-                                        <th class="text-center">Extracategory</th>
-                                        <th class="text-center">Brand</th>
-                                        <th class="text-center">Type</th>
+                                        <th class="text-center">Product Name</th>
                                         <th class="text-center">Product</th>
+                                        <th class="text-center">Price</th>
+                                        <th class="text-center">Old Price</th>
+                                        <th class="text-center">Colour</th>
+                                        <th class="text-center">Size</th>
+                                        <th class="text-center">Subcategory</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -50,22 +51,26 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <%= pd.categoryId.category_name %>
-                                                </td>
-                                                <td class="text-center">
-                                                    <%= pd.subcategoryId.subcategory_name %>
-                                                </td>
-                                                <td class="text-center">
-                                                    <%= pd.extracategoryId.extracategory_name %>
-                                                </td>
-                                                <td class="text-center">
-                                                    <%= pd.brandId.brand_name %>
-                                                </td>
-                                                <td class="text-center">
-                                                    <%= pd.typeId.type_name %>
+                                                    <img src="<%= pd.product_image %>" class="img-sm img-thumbnail"
+                                                        alt="Product">
                                                 </td>
                                                 <td class="text-center">
                                                     <%= pd.product_name %>
+                                                </td>
+                                                <td class="text-center"><span>$</span>
+                                                    <%= pd.product_price %>
+                                                </td>
+                                                <td class="text-center"><span>$</span>
+                                                    <%= pd.old_price %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= pd.product_color %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= pd.product_size %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= pd.subcategoryId.subcategory_name %>
                                                 </td>
                                                 <td class="text-center">
                                                     <%if(pd.isActive){%>

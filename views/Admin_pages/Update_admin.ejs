@@ -9,19 +9,21 @@
                 <div class="row gx-5">
                     <div class="col-lg-9">
                         <section class="content-body p-xl-4">
-                            <form action="/admin/edit_admin" method="post" enctype="multipart/form-data">
+                            <form action="/admin/editAdmin/<%= oldData.id  %>" method="post"
+                                enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <div class="row gx-3">
+                                            <input type="hidden" name="EditId" value="<%= oldData.id %>" />
                                             <div class="col-6  mb-3">
                                                 <label class="form-label">First name</label>
                                                 <input class="form-control" type="text" name="fname"
-                                                    value="<%= oldData.name %>">
+                                                    value="<%= oldData.name.split(" ")[0] %>">
                                             </div>
                                             <div class="col-6  mb-3">
                                                 <label class="form-label">Last name</label>
                                                 <input class="form-control" type="text" name="lname"
-                                                    value="<%= oldData.name %>">
+                                                    value="<%= oldData.name.split(" ")[1] %>">
                                             </div>
                                             <div class="col-lg-6  mb-3">
                                                 <label class="form-label">Email</label>
@@ -34,17 +36,23 @@
                                                     <label class="form-check ms-2">
                                                         <span class="form-check-label"> Male</span>
                                                         <input class="form-check-input" name="gender" type="radio"
-                                                            value="male">
+                                                            value="male" <% if(oldData.gender=="male" ) {%>
+                                                        <%= 'checked' %>
+                                                            <% } %>>
                                                     </label>
                                                     <label class="form-check ms-2">
                                                         <span class="form-check-label"> Female</span>
                                                         <input class="form-check-input" name="gender" type="radio"
-                                                            value="female">
+                                                            value="female" <% if(oldData.gender=="female" ) {%>
+                                                        <%= 'checked' %>
+                                                            <% } %>>
                                                     </label>
                                                     <label class="form-check ms-2">
                                                         <span class="form-check-label"> Others</span>
-                                                        <input class="form-check-input" name="gender" type="radio"
-                                                            value="others">
+                                                        <input class="form-check-input" name="gender" type="radio" value
+                                                            <% if(oldData.gender=="others" ) {%>
+                                                        <%= 'checked' %>
+                                                            <% } %>>
                                                     </label>
                                                 </div>
                                             </div>
@@ -52,11 +60,19 @@
                                                 <label class="col-lg-2 form-label me-3" for="hobby">hobby</label>
                                                 <div>
                                                     <input class="form-check-input me-1" type="checkbox" value="reading"
-                                                        name="hobby">Reading
-                                                    <input class="form-check-input me-1 ms-2" type="checkbox"
-                                                        value="writing" name="hobby">Writing
-                                                    <input class="form-check-input me-1 ms-2" type="checkbox"
-                                                        value="gardening" name="hobby">Gardening
+                                                        name="hobby" <% if(oldData.hobby.includes('reading')){%>
+                                                    <%= 'checked' %>
+                                                        <% } %>>Reading
+                                                            <input class="form-check-input me-1 ms-2" type="checkbox"
+                                                                value="writing" name="hobby" <%
+                                                                if(oldData.hobby.includes('writing')){%>
+                                                            <%= 'checked' %>
+                                                                <%} %>>writing
+                                                                    <input class="form-check-input me-1 ms-2"
+                                                                        type="checkbox" value="gardening" name="hobby"
+                                                                        <% if(oldData.hobby.includes('gardening')){%>
+                                                                    <%= 'checked' %>
+                                                                        <%} %>>gardening
                                                 </div>
                                             </div>
                                             <div class="col-lg-12  mb-2">
@@ -65,12 +81,14 @@
                                                         class="col-lg-6 form-label d-flex align-items-center">City</label>
                                                     <% var city=["Surat","Rajkot","Baroda","Bhavnagar","Jamnagar"] %>
                                                         <select class="col-lg-6 form-select" name="city">
-                                                            <option value="<%= oldData.city %>">
-                                                                <%= oldData.city %>
+                                                            <option value="">
+                                                                -- Select City --
                                                             </option>
                                                             <% for (var v of city){ %>
-                                                                <option value="<%= v %>">
-                                                                    <%= v %>
+                                                                <option value="<%= v %>" <% if(v==oldData.city) {%>
+                                                                    <%= 'selected' %>
+                                                                        <% } %>>
+                                                                            <%= v %>
                                                                 </option>
                                                                 <% } %>
                                                         </select>
@@ -96,7 +114,7 @@
                                     </aside>
                                 </div>
                                 <br>
-                                <button class="btn btn-primary" type="submit">Add Admin</button>
+                                <button class="btn btn-primary" type="submit">Update Admin</button>
                             </form>
                         </section>
                     </div>

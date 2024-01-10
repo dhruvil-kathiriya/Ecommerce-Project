@@ -60,7 +60,7 @@ routs.get("/deleteAdmin/:id", adminController.deleteAdmin);
 
 routs.get("/updateAdmin/:id", adminController.updateAdmin);
 
-routs.get("/edit_admin/:id", adminController.edit_admin);
+routs.post("/editAdmin/:id", Admin.uploadAdminImage, adminController.editAdmin);
 
 routs.use("/category", passport.checkAuth, require("./category"));
 routs.use("/subcategory", passport.checkAuth, require("./subcategory"));
