@@ -4,10 +4,10 @@ const extracategory = require("../models/extracategory");
 const product = require("../models/product");
 
 module.exports.home = async (req, res) => {
-  let catData = await category.find();
-  let subcatData = await subcategory.find();
-  let extracatData = await extracategory.find();
-  let productData = await product.find();
+  let catData = await category.find({isActive:true});
+  let subcatData = await subcategory.find({isActive:true});
+  let extracatData = await extracategory.find({isActive:true});
+  let productData = await product.find({isActive:true});
   // console.log(catData);
   console.log(extracatData);
   return res.render("User_pages/dashboard", {

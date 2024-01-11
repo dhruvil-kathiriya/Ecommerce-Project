@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 const { error } = require("console");
 
 module.exports.dashboard = async (req, res) => {
-  let adminData = await Admin.find({});
+  let adminData = await Admin.find();
   return res.render("Admin_pages/Admin_Dashboard", {
     adminData: adminData,
   });
@@ -99,8 +99,8 @@ module.exports.updateAdmin = async (req, res) => {
 
 module.exports.editAdmin = async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.file);
+    // console.log(req.body);
+    // console.log(req.file);
     let oldadmin = await Admin.findById(req.body.EditId);
     console.log(oldadmin);
     console.log(req.body);
@@ -200,7 +200,7 @@ module.exports.Checkotp = async (req, res) => {
           to: req.body.email,
           subject: "OTP",
           text: "Your OTP is here!",
-          html: `<b>${OTP}</b>`,
+          html: `Your OTP to Login is : <b>${OTP}</b>`,
         });
         res.cookie("otp", OTP);
         res.cookie("email", checkMail.email);
