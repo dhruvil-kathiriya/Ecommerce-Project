@@ -20,6 +20,7 @@ module.exports.insert_admin = async (req, res) => {
     let imagePath = "";
     req.body.name = req.body.fname + " " + req.body.lname;
     req.body.isActive = true;
+    req.body.role = "admin";
     req.body.created_date = new Date().toLocaleString();
     req.body.updated_date = new Date().toLocaleString();
     if (req.file) {
@@ -351,3 +352,4 @@ module.exports.deleteAdmin = async (req, res) => {
     return res.redirect("back");
   }
 };
+

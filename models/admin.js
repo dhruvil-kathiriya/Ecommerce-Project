@@ -33,6 +33,10 @@ const AdminSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    required: true,
+  },
   admin_image: {
     type: String,
     required: true,

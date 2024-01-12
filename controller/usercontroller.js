@@ -9,7 +9,8 @@ module.exports.home = async (req, res) => {
   let extracatData = await extracategory.find({isActive:true});
   let productData = await product.find({isActive:true});
   // console.log(catData);
-  console.log(extracatData);
+  // console.log(subcateData);
+  // console.log(extracatData);
   return res.render("User_pages/dashboard", {
     catData: catData,
     subcatData: subcatData,
