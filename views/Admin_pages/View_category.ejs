@@ -44,10 +44,10 @@
                                                         <input class="form-check-input" type="checkbox" value="" />
                                                     </div>
                                                 </td>
-                                                <td class="text-centeralign-middle">
+                                                <td class="text-center align-middle">
                                                     <%= ctdata.category_name %>
                                                 </td>
-                                                <td class="text-centeralign-middle">
+                                                <td class="text-center align-middle">
                                                     <%if(ctdata.isActive){%>
                                                         <a href="/admin/category/isActive/<%=ctdata.id%>"
                                                             class="badge rounded-pill alert-success">Active</a>
@@ -56,7 +56,7 @@
                                                                 class="badge rounded-pill alert-danger">Inactive</a>
                                                             <% }%>
                                                 </td>
-                                                <td class="text-centeralign-middle">
+                                                <td class="text-center align-middle">
                                                     <div class="dropdown">
                                                         <a class="dropdown-item text-secondary border rounded"
                                                             href="/admin/category/updatecategory/<%= ctdata.id %>"><i
@@ -71,7 +71,7 @@
                                             </tr>
                                             <% }%>
                                                 <% }else{ %>
-                                                    <td class="text-centeralign-middle" colspan="3">
+                                                    <td class="text-center align-middle" colspan="3">
                                                         <p class="text-center text-danger">No Record Found</p>
                                                     </td>
                                                     <% } %>

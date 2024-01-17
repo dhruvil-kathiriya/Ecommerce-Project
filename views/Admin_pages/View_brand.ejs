@@ -39,48 +39,54 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% for(var bdata of brandData){ %>
-                                        <tr class="">
-                                            <td class="text-start">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" />
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <%= bdata.categoryId.category_name %>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <%= bdata.subcategoryId.subcategory_name %>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <%= bdata.extracategoryId.extracategory_name %>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <%= bdata.brand_name %>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <%if(bdata.isActive){%>
-                                                    <a href="/admin/brand/isActive/<%=bdata.id%>"
-                                                        class="badge rounded-pill alert-success">Active</a>
-                                                    <% }else{ %>
-                                                        <a href="/admin/brand/deActive/<%=bdata.id%>"
-                                                            class="badge rounded-pill alert-danger">Inactive</a>
-                                                        <% }%>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <div class="dropdown">
-                                                    <a class="dropdown-item text-secondary border rounded"
-                                                        href="/admin/brand/updatebrand/<%=bdata.id%>"><i
-                                                            class="material-icons md-edit"></i>Update</a>
-                                                </div>
-                                                <div class="dropdown">
-                                                    <a class="dropdown-item text-danger border rounded"
-                                                        href="/admin/brand/deletebrand/<%=bdata.id%>"><i
-                                                            class="material-icons md-delete_forever"></i>Delete</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <% } %>
+                                    <% if(brandData !="" ){ %>
+                                        <% for(var bdata of brandData){ %>
+                                            <tr class="">
+                                                <td class="text-start">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" />
+                                                    </div>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <%= bdata.categoryId.category_name %>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <%= bdata.subcategoryId.subcategory_name %>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <%= bdata.extracategoryId.extracategory_name %>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <%= bdata.brand_name %>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <%if(bdata.isActive){%>
+                                                        <a href="/admin/brand/isActive/<%=bdata.id%>"
+                                                            class="badge rounded-pill alert-success">Active</a>
+                                                        <% }else{ %>
+                                                            <a href="/admin/brand/deActive/<%=bdata.id%>"
+                                                                class="badge rounded-pill alert-danger">Inactive</a>
+                                                            <% }%>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-item text-secondary border rounded"
+                                                            href="/admin/brand/updatebrand/<%=bdata.id%>"><i
+                                                                class="material-icons md-edit"></i>Update</a>
+                                                    </div>
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-item text-danger border rounded"
+                                                            href="/admin/brand/deletebrand/<%=bdata.id%>"><i
+                                                                class="material-icons md-delete_forever"></i>Delete</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <% }%>
+                                                <% }else{ %>
+                                                    <td class="text-center align-middle" colspan="7">
+                                                        <p class="text-center text-danger">No Record Found</p>
+                                                    </td>
+                                                    <% } %>
                                 </tbody>
                             </table>
                             <% if(currentPage> 0){ %>

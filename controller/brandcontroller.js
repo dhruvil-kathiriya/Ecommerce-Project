@@ -42,6 +42,7 @@ module.exports.view_brand = async (req, res) => {
       .skip(perPage * page)
       .populate(["subcategoryId", "categoryId", "extracategoryId"])
       .exec();
+    console.log(brandData);
     let totalbrandData = await brand
       .find({
         $or: [{ brand_name: { $regex: ".*" + search + ".*", $options: "i" } }],

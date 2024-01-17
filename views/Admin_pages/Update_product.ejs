@@ -12,6 +12,61 @@
                             <form action="/admin/product/insert_product" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-lg-8">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Select category</label>
+                                            <select class="form-select" name="categoryId" id="catId"
+                                                onchange="return getsubcatData()">
+                                                <% categoryData.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.category_name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Select Subcategory</label>
+                                            <select class="form-select" name="subcategoryId" id="subcatId"
+                                                onchange="return getextracatData()">
+                                                <% subcategoryData.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.subcategory_name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Select Extracategory</label>
+                                            <select class="form-select" name="extracategoryId" id="extracatId"
+                                                onchange="return getBrandTypeData()">
+                                                <% extracategoryData.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.extracategory_name %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div id="BrandType">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <label class="form-label col-lg-4">Select Brand</label>
+                                                <select class="form-select" name="brandId" id="brandId">
+                                                    <% brandData.map((v,i)=>{ %>
+                                                        <option value="<%= v.id %>">
+                                                            <%= v.brand_name %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-3">
+                                                <label class="form-label col-lg-4">Select Type</label>
+                                                <select class="form-select" name="typeId" id="typeId">
+                                                    <% typeData.map((v,i)=>{ %>
+                                                        <option value="<%= v.id %>">
+                                                            <%= v.type_name %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="d-flex gx-4 align-items-center mb-3">
                                             <label class="form-label col-lg-4">Add Product</label>
                                             <input type="text" placeholder="Product Name" class="form-control"
@@ -36,19 +91,24 @@
                                             <label class="form-label col-lg-4">Product Size</label>
                                             <div class="d-flex">
                                                 <label class="form-check ms-2">
-                                                    <span class="form-check-label">36</span>
-                                                    <input class="form-check-input" name="product_size" type="radio"
-                                                        value="36">
+                                                    <span class="form-check-label">M</span>
+                                                    <input class="form-check-input" name="product_size" type="checkbox"
+                                                        value="M">
                                                 </label>
                                                 <label class="form-check ms-2">
-                                                    <span class="form-check-label"> 38</span>
-                                                    <input class="form-check-input" name="product_size" type="radio"
-                                                        value="38">
+                                                    <span class="form-check-label">L</span>
+                                                    <input class="form-check-input" name="product_size" type="checkbox"
+                                                        value="L">
                                                 </label>
                                                 <label class="form-check ms-2">
-                                                    <span class="form-check-label"> 40</span>
-                                                    <input class="form-check-input" name="product_size" type="radio"
-                                                        value="40">
+                                                    <span class="form-check-label"> XL</span>
+                                                    <input class="form-check-input" name="product_size" type="checkbox"
+                                                        value="XL">
+                                                </label>
+                                                <label class="form-check ms-2">
+                                                    <span class="form-check-label"> XXL</span>
+                                                    <input class="form-check-input" name="product_size" type="checkbox"
+                                                        value="XXL">
                                                 </label>
                                             </div>
                                         </div>
@@ -57,18 +117,23 @@
                                             <div class="d-flex">
                                                 <label class="form-check ms-2">
                                                     <span class="form-check-label">Gray</span>
-                                                    <input class="form-check-input" name="product_color" type="radio"
+                                                    <input class="form-check-input" name="product_color" type="checkbox"
                                                         value="Gray">
                                                 </label>
                                                 <label class="form-check ms-2">
                                                     <span class="form-check-label"> Black</span>
-                                                    <input class="form-check-input" name="product_color" type="radio"
+                                                    <input class="form-check-input" name="product_color" type="checkbox"
                                                         value="Black">
                                                 </label>
                                                 <label class="form-check ms-2">
                                                     <span class="form-check-label"> White</span>
-                                                    <input class="form-check-input" name="product_color" type="radio"
+                                                    <input class="form-check-input" name="product_color" type="checkbox"
                                                         value="White">
+                                                </label>
+                                                <label class="form-check ms-2">
+                                                    <span class="form-check-label"> Blue</span>
+                                                    <input class="form-check-input" name="product_color" type="checkbox"
+                                                        value="Blue">
                                                 </label>
                                             </div>
                                         </div>

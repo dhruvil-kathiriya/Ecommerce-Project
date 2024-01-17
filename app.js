@@ -63,7 +63,6 @@ app.use("/", require("./routes/user"));
 //Backend Route
 app.use("/admin", require("./routes/admin"));
 
-
 app.listen(port, (error) => {
   if (error) {
     console.log(error);

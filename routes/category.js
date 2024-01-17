@@ -5,18 +5,22 @@ const passport = require("passport");
 
 routs.get("/add_category", passport.checkAuth, categorycontroller.add_category);
 
-routs.get("/view_category", passport.checkAuth, categorycontroller.view_category);
+routs.get(
+  "/view_category",
+  passport.checkAuth,
+  categorycontroller.view_category
+);
 
 routs.post("/insert_category", categorycontroller.insert_category);
 
-routs.get('/isActive/:id', categorycontroller.isActive);
+routs.get("/isActive/:id", categorycontroller.isActive);
 
-routs.get('/deActive/:id', categorycontroller.deActive);
+routs.get("/deActive/:id", categorycontroller.deActive);
 
 routs.get("/deletecategory/:id", categorycontroller.deletecategory);
 
 routs.get("/updatecategory/:id", categorycontroller.updatecategory);
 
-routs.post("/editcategory/:id",  categorycontroller.editcategory);
+routs.post("/editcategory/:id", categorycontroller.editcategory);
 
 module.exports = routs;

@@ -93,7 +93,7 @@ module.exports.view_product = async (req, res) => {
         ],
       })
       .countDocuments();
-    console.log(productData);
+    // console.log(productData);
     return res.render("Admin_pages/View_product", {
       productData: productData,
       searchValue: search,
@@ -190,9 +190,27 @@ module.exports.deleteproduct = async (req, res) => {
 
 module.exports.updateproduct = async (req, res) => {
   try {
-    let productData = await product.findById(req.params.id);
+    let categoryData = await category.find({});
+    let subcategoryData = await subcategory.find({});
+    let extracategoryData = await extracategory.find({});
+    let brandData = await brand.find({});
+    let typeData = await type.find({});
+    let productData = await product
+      .findById(req.params.id)
+      .populate([
+        "subcategoryId",
+        "categoryId",
+        "extracategoryId",
+        "brandId",
+        "typeId",
+      ]);
     return res.render("Admin_pages/Update_product", {
+      categoryData: categoryData,
+      subcategoryData: subcategoryData,
+      extracategoryData: extracategoryData,
+      brandData: brandData,
       productData: productData,
+      typeData: typeData,
     });
   } catch (err) {
     console.log(err);
@@ -202,10 +220,7 @@ module.exports.updateproduct = async (req, res) => {
 
 module.exports.editproduct = async (req, res) => {
   try {
-    // console.log(req.body);
-    // console.log(req.file);
     let oldproduct = await product.findById(req.body.EditId);
-    console.log(oldproduct);
     if (req.file) {
       if (oldproduct.product_image) {
         let fullpath = path.join(__dirname, "..", oldproduct.product_image);
