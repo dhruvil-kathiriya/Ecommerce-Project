@@ -9,12 +9,16 @@ routs.get("/view_brand", passport.checkAuth, brandcontroller.view_brand);
 
 routs.post("/insert_brand", brandcontroller.insert_brand);
 
-routs.get('/isActive/:id', brandcontroller.isActive);
+routs.get("/isActive/:id", brandcontroller.isActive);
 
-routs.get('/deActive/:id', brandcontroller.deActive);
+routs.get("/deActive/:id", brandcontroller.deActive);
 
 routs.get("/deletebrand/:id", brandcontroller.deletebrand);
 
-routs.post("/getextracategoryData", brandcontroller.getextracategoryData)
+routs.post("/getextracategoryData", brandcontroller.getextracategoryData);
+
+routs.get("/updatebrand/:id", brandcontroller.updatebrand);
+
+routs.post("/editbrand/:id", brandcontroller.editbrand);
 
 module.exports = routs;

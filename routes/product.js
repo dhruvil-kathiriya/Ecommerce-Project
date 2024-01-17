@@ -8,14 +8,26 @@ routs.get("/add_product", passport.checkAuth, productcontroller.add_product);
 
 routs.get("/view_product", passport.checkAuth, productcontroller.view_product);
 
-routs.post("/insert_product", product.uploadProductImage, productcontroller.insert_product);
+routs.post(
+  "/insert_product",
+  product.uploadProductImage,
+  productcontroller.insert_product
+);
 
-routs.get('/isActive/:id', productcontroller.isActive);
+routs.get("/isActive/:id", productcontroller.isActive);
 
-routs.get('/deActive/:id', productcontroller.deActive);
+routs.get("/deActive/:id", productcontroller.deActive);
 
-routs.get('/deleteproduct/:id', productcontroller.deleteproduct);
+routs.get("/deleteproduct/:id", productcontroller.deleteproduct);
 
-routs.post("/getBrandType", productcontroller.getBrandType)
+routs.post("/getBrandType", productcontroller.getBrandType);
+
+routs.get("/updateproduct/:id", productcontroller.updateproduct);
+
+routs.post(
+  "/editproduct/:id",
+  product.uploadProductImage,
+  productcontroller.editproduct
+);
 
 module.exports = routs;

@@ -5,16 +5,28 @@ const subcategory = require("../models/subcategory");
 const subcategorycontroller = require("../controller/subcategorycontroller");
 const passport = require("passport");
 
-routs.get("/add_subcategory", passport.checkAuth, subcategorycontroller.add_subcategory);
+routs.get(
+  "/add_subcategory",
+  passport.checkAuth,
+  subcategorycontroller.add_subcategory
+);
 
-routs.get("/view_subcategory", passport.checkAuth, subcategorycontroller.view_subcategory);
+routs.get(
+  "/view_subcategory",
+  passport.checkAuth,
+  subcategorycontroller.view_subcategory
+);
 
 routs.post("/insert_subcategory", subcategorycontroller.insert_subcategory);
 
-routs.get('/isActive/:id', subcategorycontroller.isActive);
+routs.get("/isActive/:id", subcategorycontroller.isActive);
 
-routs.get('/deActive/:id', subcategorycontroller.deActive);
+routs.get("/deActive/:id", subcategorycontroller.deActive);
 
-routs.get('/deletesubcategory/:id', subcategorycontroller.deletesubcategory);
+routs.get("/deletesubcategory/:id", subcategorycontroller.deletesubcategory);
+
+routs.get("/updatesubcategory/:id", subcategorycontroller.updatesubcategory);
+
+routs.post("/editsubcategory/:id", subcategorycontroller.editsubcategory);
 
 module.exports = routs;

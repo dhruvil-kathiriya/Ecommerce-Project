@@ -9,12 +9,16 @@ routs.get("/view_type", passport.checkAuth, typecontroller.view_type);
 
 routs.post("/insert_type", typecontroller.insert_type);
 
-routs.get('/isActive/:id', typecontroller.isActive);
+routs.get("/isActive/:id", typecontroller.isActive);
 
-routs.get('/deActive/:id', typecontroller.deActive);
+routs.get("/deActive/:id", typecontroller.deActive);
 
-routs.get('/deletetype/:id', typecontroller.deletetype);
+routs.get("/deletetype/:id", typecontroller.deletetype);
 
-routs.post('/getextbrandData', typecontroller.getBrand)
+routs.post("/getextbrandData", typecontroller.getBrand);
+
+routs.get("/updatetype/:id", typecontroller.updatetype);
+
+routs.post("/edittype/:id", typecontroller.edittype);
 
 module.exports = routs;

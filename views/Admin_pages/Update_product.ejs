@@ -1,0 +1,96 @@
+<%- include("./Admin_Header") %>
+
+    <section class="content-main">
+        <div class="content-header">
+            <h2 class="content-title">Add Product </h2>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row gx-5">
+                    <div class="col-lg-9">
+                        <section class="content-body p-xl-4">
+                            <form action="/admin/product/insert_product" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="d-flex gx-4 align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Add Product</label>
+                                            <input type="text" placeholder="Product Name" class="form-control"
+                                                name="product_name" value="<%= productData.product_name %>">
+                                        </div>
+                                        <div class="d-flex gx-4 align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Product Price</label>
+                                            <input type="text" placeholder="Product Price" class="form-control"
+                                                name="product_price" value="<%= productData.product_price %>">
+                                        </div>
+                                        <div class="d-flex gx-4 align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Old Price</label>
+                                            <input type="text" placeholder="Old Price" class="form-control"
+                                                name="old_price" value="<%= productData.old_price %>">
+                                        </div>
+                                        <div class="d-flex gx-4 align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Product Description</label>
+                                            <textarea name="product_description" class="form-control" cols="30"
+                                                rows="10"><%= productData.product_description %></textarea>
+                                        </div>
+                                        <div class="col-lg-12  mb-3 d-flex align-items-center">
+                                            <label class="form-label col-lg-4">Product Size</label>
+                                            <div class="d-flex">
+                                                <label class="form-check ms-2">
+                                                    <span class="form-check-label">36</span>
+                                                    <input class="form-check-input" name="product_size" type="radio"
+                                                        value="36">
+                                                </label>
+                                                <label class="form-check ms-2">
+                                                    <span class="form-check-label"> 38</span>
+                                                    <input class="form-check-input" name="product_size" type="radio"
+                                                        value="38">
+                                                </label>
+                                                <label class="form-check ms-2">
+                                                    <span class="form-check-label"> 40</span>
+                                                    <input class="form-check-input" name="product_size" type="radio"
+                                                        value="40">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12  mb-3 d-flex align-items-center">
+                                            <label class="form-label col-lg-4">Product Colour</label>
+                                            <div class="d-flex">
+                                                <label class="form-check ms-2">
+                                                    <span class="form-check-label">Gray</span>
+                                                    <input class="form-check-input" name="product_color" type="radio"
+                                                        value="Gray">
+                                                </label>
+                                                <label class="form-check ms-2">
+                                                    <span class="form-check-label"> Black</span>
+                                                    <input class="form-check-input" name="product_color" type="radio"
+                                                        value="Black">
+                                                </label>
+                                                <label class="form-check ms-2">
+                                                    <span class="form-check-label"> White</span>
+                                                    <input class="form-check-input" name="product_color" type="radio"
+                                                        value="White">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex gx-4 align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Product Image</label>
+                                            <input type="file" class="form-control" name="product_image">
+                                        </div>
+                                        <div class="d-flex gx-4 align-items-center mb-3">
+                                            <label class="form-label col-lg-4">Product Images</label>
+                                            <input type="file" multiple class="form-control"
+                                                name="product_multiple_image">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <button class="btn btn-primary" type="submit">Add Product</button>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include("./Admin_Footer.ejs") %>

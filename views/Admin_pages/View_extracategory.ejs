@@ -25,16 +25,16 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-start">
+                                        <th class="text-start align-middle">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" />
                                             </div>
                                         </th>
-                                        <th class="text-center">Category</th>
-                                        <th class="text-center">Subcategory</th>
-                                        <th class="text-center">Extracategory</th>
-                                        <th class="text-center">Status</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center align-middle">Category</th>
+                                        <th class="text-center align-middle">Subcategory</th>
+                                        <th class="text-center align-middle">Extracategory</th>
+                                        <th class="text-center align-middle">Status</th>
+                                        <th class="text-center align-middle">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,16 +46,16 @@
                                                         <input class="form-check-input" type="checkbox" value="" />
                                                     </div>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= ectData.categoryId.category_name %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= ectData.subcategoryId.subcategory_name %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= ectData.extracategory_name %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%if(ectData.isActive){%>
                                                         <a href="/admin/extracategory/isActive/<%=ectData.id%>"
                                                             class="badge rounded-pill alert-success">Active</a>
@@ -64,7 +64,7 @@
                                                                 class="badge rounded-pill alert-danger">Inactive</a>
                                                             <% }%>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <div class="dropdown">
                                                         <a class="dropdown-item text-secondary border rounded"
                                                             href="/admin/extracategory/updateextracategory/<%= ectData.id %>"><i
@@ -78,7 +78,7 @@
                                                 </td>
                                                 <% }%>
                                                     <% }else{ %>
-                                                        <td class="text-center" colspan="7">
+                                                        <td class="text-center align-middle" colspan="7">
                                                             <p class="text-center text-danger">No Record Found</p>
                                                         </td>
                                                         <% } %>

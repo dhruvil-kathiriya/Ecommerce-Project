@@ -17,6 +17,50 @@
                 </form>
             </div>
         </div>
+        <!-- <div class="card-body">
+            <% if(productData !="" ){ %>
+                <% for(var pd of productData ){ %>
+                    <article class="itemlist">
+                        <div class="row align-items-center">
+                            <div class="col col-check flex-grow-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-4 col-8 flex-grow-1 col-name">
+                                <a class="itemside" href="#">
+                                    <div class="left">
+                                        <img src="<%= pd.product_image %>" class="img-sm img-thumbnail" alt="Item">
+                                    </div>
+                                    <div class="info">
+                                        <h6 class="mb-0">T-shirt for men medium size</h6>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-price"> <span>$34.50</span> </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-status">
+                                <span class="badge rounded-pill alert-success">Active</span>
+                            </div>
+                            <div class="col-lg-1 col-sm-2 col-4 col-date">
+                                <span>02.11.2022</span>
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-4 col-action text-end d-flex">
+                                <div class="dropdown">
+                                    <a class="dropdown-item text-secondary border rounded"
+                                        href="/admin/product/updateproduct/<%= pd.id %>"><i
+                                            class="material-icons md-edit"></i>Update</a>
+                                </div>
+                                <div class="dropdown">
+                                    <a class="dropdown-item text-danger border rounded"
+                                        href="/admin/product/deleteproduct/<%= pd.id %>"><i
+                                            class="material-icons md-delete_forever"></i>Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <% } %>
+                        <% } %>
+        </div> -->
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -30,11 +74,10 @@
                                                 <input class="form-check-input" type="checkbox" value="" />
                                             </div>
                                         </th>
-                                        <th class="text-center">Product Name</th>
-                                        <th class="text-center">Product</th>
+                                        <th class="text-center">Image</th>
+                                        <th class="text-center">Product name</th>
                                         <th class="text-center">Price</th>
-                                        <th class="text-center">Old Price</th>
-                                        <th class="text-center">Colour</th>
+                                        <th class="text-center">color</th>
                                         <th class="text-center">Size</th>
                                         <th class="text-center">Subcategory</th>
                                         <th class="text-center">Status</th>
@@ -45,34 +88,33 @@
                                     <% if(productData !="" ){ %>
                                         <% for(var pd of productData ){ %>
                                             <tr class="">
-                                                <td class="text-start">
+                                                <td class="text-start align-middle">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="" />
                                                     </div>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <img src="<%= pd.product_image %>" class="img-sm img-thumbnail"
                                                         alt="Product">
                                                 </td>
-                                                <td class="text-center">
-                                                    <%= pd.product_name %>
+                                                <td class="text-center align-middle">
+                                                    <h6>
+                                                        <%= pd.product_name %>
+                                                    </h6>
                                                 </td>
-                                                <td class="text-center"><span>$</span>
+                                                <td class="text-center align-middle"><span>$</span>
                                                     <%= pd.product_price %>
                                                 </td>
-                                                <td class="text-center"><span>$</span>
-                                                    <%= pd.old_price %>
-                                                </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= pd.product_color %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= pd.product_size %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= pd.subcategoryId.subcategory_name %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%if(pd.isActive){%>
                                                         <a href="/admin/product/isActive/<%=pd.id%>"
                                                             class="badge rounded-pill alert-success">Active</a>
@@ -81,7 +123,7 @@
                                                                 class="badge rounded-pill alert-danger">Inactive</a>
                                                             <% }%>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <div class="dropdown">
                                                         <a class="dropdown-item text-secondary border rounded"
                                                             href="/admin/product/updateproduct/<%= pd.id %>"><i
@@ -96,7 +138,7 @@
 
                                                 <% }%>
                                                     <% }else{ %>
-                                                        <td class="text-center" colspan="9">
+                                                        <td class="text-center align-middle" colspan="9">
                                                             <p class="text-center text-danger">No Record Found</p>
                                                         </td>
                                                         <% } %>

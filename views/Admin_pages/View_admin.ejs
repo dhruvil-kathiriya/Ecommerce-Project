@@ -25,54 +25,54 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
+                                        <th class="text-center align-middle">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" />
                                             </div>
                                         </th>
-                                        <th class="text-center">Image</th>
-                                        <th class="text-center">Name</th>
-                                        <th class="text-center">Email</th>
-                                        <th class="text-center">Gender</th>
-                                        <th class="text-center">Hobby</th>
-                                        <th class="text-center">City</th>
-                                        <th class="text-center">Description</th>
-                                        <th class="text-center">Status</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center align-middle">Image</th>
+                                        <th class="text-center align-middle">Name</th>
+                                        <th class="text-center align-middle">Email</th>
+                                        <th class="text-center align-middle">Gender</th>
+                                        <th class="text-center align-middle">Hobby</th>
+                                        <th class="text-center align-middle">City</th>
+                                        <th class="text-center align-middle">Description</th>
+                                        <th class="text-center align-middle">Status</th>
+                                        <th class="text-center align-middle">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <% if(adminData !="" ){ %>
                                         <% for(var ad of adminData ){ %>
                                             <tr class="">
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="" />
                                                     </div>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <img src="<%= ad.admin_image %>" alt="<%= ad.admin_image %>"
                                                         class="rounded-circle" height="50" width="50">
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= ad.name %>
                                                 </td>
-                                                <td class="text-center"><strong>
+                                                <td class="text-center align-middle"><strong>
                                                         <%= ad.email %>
                                                     </strong></td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= ad.gender %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= ad.hobby %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= ad.city %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%= ad.description %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <%if(ad.isActive){%>
                                                         <a href="/admin/isActive/<%=ad.id%>"
                                                             class="badge rounded-pill alert-success">Active</a>
@@ -81,7 +81,7 @@
                                                                 class="badge rounded-pill alert-danger">Inactive</a>
                                                             <% }%>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center align-middle">
                                                     <div class="dropdown">
                                                         <a class="dropdown-item text-secondary border rounded"
                                                             href="/admin/updateAdmin/<%=ad.id%>"><i
@@ -97,7 +97,7 @@
                                             <% }%>
                                                 <% }else{ %>
                                                     <tr>
-                                                        <h2 class="text-center">No Record Found</h2>
+                                                        <h2 class="text-center align-middle">No Record Found</h2>
                                                     </tr>
                                                     <% } %>
                                 </tbody>

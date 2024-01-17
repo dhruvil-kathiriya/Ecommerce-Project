@@ -15,4 +15,8 @@ routs.get('/deActive/:id', categorycontroller.deActive);
 
 routs.get("/deletecategory/:id", categorycontroller.deletecategory);
 
+routs.get("/updatecategory/:id", categorycontroller.updatecategory);
+
+routs.post("/editcategory/:id",  categorycontroller.editcategory);
+
 module.exports = routs;

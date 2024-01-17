@@ -25,29 +25,29 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-start">
+                                        <th class="text-start align-middle">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" />
                                             </div>
                                         </th>
-                                        <th class="text-center">Category</th>
-                                        <th class="text-center">Status</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center align-middle">Category</th>
+                                        <th class="text-center align-middle">Status</th>
+                                        <th class="text-center align-middle">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <% if(catdata !="" ){ %>
                                         <% for(var ctdata of catdata){ %>
                                             <tr class="">
-                                                <td class="text-start">
+                                                <td class="text-start align-middle">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="" />
                                                     </div>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-centeralign-middle">
                                                     <%= ctdata.category_name %>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-centeralign-middle">
                                                     <%if(ctdata.isActive){%>
                                                         <a href="/admin/category/isActive/<%=ctdata.id%>"
                                                             class="badge rounded-pill alert-success">Active</a>
@@ -56,7 +56,7 @@
                                                                 class="badge rounded-pill alert-danger">Inactive</a>
                                                             <% }%>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-centeralign-middle">
                                                     <div class="dropdown">
                                                         <a class="dropdown-item text-secondary border rounded"
                                                             href="/admin/category/updatecategory/<%= ctdata.id %>"><i
@@ -71,7 +71,7 @@
                                             </tr>
                                             <% }%>
                                                 <% }else{ %>
-                                                    <td class="text-center" colspan="3">
+                                                    <td class="text-centeralign-middle" colspan="3">
                                                         <p class="text-center text-danger">No Record Found</p>
                                                     </td>
                                                     <% } %>

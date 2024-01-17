@@ -1,0 +1,33 @@
+<%- include("./Admin_Header") %>
+
+    <section class="content-main">
+        <div class="content-header">
+            <h2 class="content-title">Edit Extracategory </h2>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row gx-5">
+                    <div class="col-lg-9">
+                        <section class="content-body p-xl-4">
+                            <form action="/admin/extracategory/editextracategory/<%= extracatData.id %>" method="post">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="d-flex gx-4 align-items-center">
+                                            <label class="form-label col-lg-4">Extracategory</label>
+                                            <input type="text" placeholder="extracategory name" class="form-control"
+                                                name="extracategory_name"
+                                                value="<%= extracatData.extracategory_name %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <button class="btn btn-primary" type="submit">Update Extracategory</button>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include("./Admin_Footer.ejs") %>

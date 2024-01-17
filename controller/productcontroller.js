@@ -188,6 +188,43 @@ module.exports.deleteproduct = async (req, res) => {
   }
 };
 
+module.exports.updateproduct = async (req, res) => {
+  try {
+    let productData = await product.findById(req.params.id);
+    return res.render("Admin_pages/Update_product", {
+      productData: productData,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.redirect("back");
+  }
+};
+
+module.exports.editproduct = async (req, res) => {
+  try {
+    // console.log(req.body);
+    // console.log(req.file);
+    let oldproduct = await product.findById(req.body.EditId);
+    console.log(oldproduct);
+    if (req.file) {
+      if (oldproduct.product_image) {
+        let fullpath = path.join(__dirname, "..", oldproduct.product_image);
+        await fs.unlinkSync(fullpath);
+      }
+      var imagePath = "";
+      imagePath = product.imgModel + "/" + req.file.filename;
+      req.body.product_image = imagePath;
+    } else {
+      req.body.product_image = oldproduct.product_image;
+    }
+    await product.findByIdAndUpdate(req.body.EditId, req.body);
+    return res.redirect("/admin/type/view_product");
+  } catch (err) {
+    console.log(err);
+    return res.redirect("back");
+  }
+};
+
 module.exports.getBrandType = async (req, res) => {
   try {
     // console.log(req.body);
