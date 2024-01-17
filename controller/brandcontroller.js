@@ -33,7 +33,7 @@ module.exports.view_brand = async (req, res) => {
     } else {
       page = 0;
     }
-    const perPage = 2;
+    const perPage = 3;
     let brandData = await brand
       .find({
         $or: [{ brand_name: { $regex: ".*" + search + ".*", $options: "i" } }],
