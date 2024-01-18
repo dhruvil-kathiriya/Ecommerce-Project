@@ -4639,7 +4639,7 @@ table .product-thumbnail img {
   background: #ffdb33;
 }
 
-.product-color-white {
+.product-color-White {
   background: #ffffff;
 }
 
@@ -4655,8 +4655,18 @@ table .product-thumbnail img {
   background: #38cf46;
 }
 
-.product-color-purple {
-  background: #ff8ff8;
+.product-color-Black {
+  background: #000000;
+}
+
+.product-color-Gray {
+  background: #808080;
+}
+
+
+
+.product-color-Blue {
+  background: #17a3eb;
 }
 
 .detail-gallery .slick-slider {
