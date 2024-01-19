@@ -56,7 +56,7 @@ This will start the server, and you can access the application in your web brows
 
 Both the admin backend and user frontend are served from the same codebase and accessible via:
 
-- User facing storefront: `/`
+- User-facing storefront: `/`
 - Admin area: `/admin`
 
 ## Admin Credentials
@@ -79,6 +79,3 @@ _Password:_ admin123
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or create a pull request.
 
-#### License
-
-This project is open-sourced under the [MIT License](https://choosealicense.com/licenses/mit/)
