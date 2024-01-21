@@ -72,7 +72,7 @@ passport.setAuth = function (req, res, next) {
   return next();
 };
 
-passport.checkAuth = function (req, res, next) {
+passport.checkAthuntication = function (req, res, next) {
   if (req.isAuthenticated()) {
     if (req.user.role == "user") {
       console.log("you have no authorization");
@@ -84,7 +84,7 @@ passport.checkAuth = function (req, res, next) {
   }
 };
 
-passport.checkUserAuthentication = function (req, res, next) {
+passport.checkAuth = function (req, res, next) {
   if (req.isAuthenticated()) {
     next();
   } else {
