@@ -101,11 +101,11 @@ module.exports.createAccount = async (req, res) => {
 
 module.exports.addProducttocart = async (req, res) => {
   try {
+    // console.log(req.body);
     var incart = await cart.findOne({
       productId: req.params.id,
       userId: req.body.userId,
       status: "pending",
-
     });
     if (incart) {
       console.log('Product already Added in Cart');

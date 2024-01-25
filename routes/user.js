@@ -23,4 +23,13 @@ routs.post(
   usercontroller.addProducttocart
 );
 
+routs.get('/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+routs.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/');
+  });
+
 module.exports = routs;
