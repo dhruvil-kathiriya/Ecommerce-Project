@@ -34,7 +34,7 @@ passport.use(
     async function (email, password, done) {
       let userData = await User.findOne({ email: email });
       if (userData) {
-        if (await bcrypt.compare(password, userData.password)) {
+        if (password == userData.password) {
           return done(null, userData);
         } else {
           return done(null, false);
@@ -46,9 +46,10 @@ passport.use(
   )
 );
 
-passport.serializeUser(async (adminData, done) => {
-  return done(null, adminData.id);
+passport.serializeUser(async (user, done) => {
+  return done(null, user.id);
 });
+
 passport.deserializeUser(async (id, done) => {
   let adminRecord = await Admin.findById(id);
   let userRecord = await User.findById(id);
@@ -75,20 +76,20 @@ passport.setAuth = function (req, res, next) {
 passport.checkAthuntication = function (req, res, next) {
   if (req.isAuthenticated()) {
     if (req.user.role == "user") {
-      console.log("you have no authorization");
-      return res.redirect("/");
+      next();
     }
-    next();
   } else {
-    return res.redirect("/admin/");
+    return res.redirect("/");
   }
 };
 
 passport.checkAuth = function (req, res, next) {
   if (req.isAuthenticated()) {
-    next();
+    if (req.user.role == "admin") {
+      next();
+    }
   } else {
-    return res.redirect("/");
+    return res.redirect("/admin/");
   }
 };
 module.exports = passport;

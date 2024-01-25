@@ -219,13 +219,17 @@
                                     <div class="header-action-right">
                                         <div class="header-action-2">
                                             <div class="header-action-icon-2 align-middle">
-
-                                                <p class="align-middle"><i class="fi-rs-user me-1"></i><a href="">
-                                                        Hello User
-                                                    </a></p>
-                                                <p class="align-middle"><i class="fi-rs-user me-1"></i><a
-                                                        href="/userlogin">Log In / Sign
-                                                        Up</a></p>
+                                                <% (locals.userdetails) %>
+                                                    <% if(locals.userdetails){ %>
+                                                        <p class="align-middle"><i class="fi-rs-user me-1"></i><a
+                                                                href="">
+                                                                Hello <%= locals.userdetails.username %>
+                                                            </a></p>
+                                                        <% }else{ %>
+                                                            <p class="align-middle"><i class="fi-rs-user me-1"></i><a
+                                                                    href="/userlogin">Log In / Sign
+                                                                    Up</a></p>
+                                                            <% } %>
                                             </div>
                                             <div class="header-action-icon-2">
                                                 <a href="shop-wishlist.html">
@@ -434,12 +438,19 @@
                     <div class="single-mobile-header-info mt-30">
                         <a href="page-contact.html"> Our location </a>
                     </div>
-                    <div class="single-mobile-header-info">
-                        <a href="page-login-register.html">Log In / Sign Up </a>
-                    </div>
-                    <div class="single-mobile-header-info">
-                        <a href="#">(+01) - 2345 - 6789 </a>
-                    </div>
+                    <% if(locals.userdetails){ %>
+                        <p class="align-middle"><i class="fi-rs-user me-1"></i><a href="">
+                                Hello <%= locals.userdetails %>
+                            </a></p>
+                        <% }else{ %>
+                            <div class="single-mobile-header-info">
+                                <a href="/userlogin">Log In / Sign Up </a>
+                            </div>
+                            <div class="single-mobile-header-info">
+                                <a href="#">(+01) - 2345 - 6789 </a>
+                            </div>
+                            <% } %>
+
                 </div>
                 <div class="mobile-social-icon">
                     <h5 class="mb-15 text-grey-4">Follow Us</h5>

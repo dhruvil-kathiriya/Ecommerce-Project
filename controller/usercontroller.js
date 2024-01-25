@@ -3,7 +3,9 @@ const subcategory = require("../models/subcategory");
 const extracategory = require("../models/extracategory");
 const product = require("../models/product");
 const User = require("../models/user");
+const cart = require("../models/cart");
 const session = require("express-session");
+const { stat } = require("fs/promises");
 
 module.exports.home = async (req, res) => {
   let catData = await category.find({ isActive: true });
@@ -63,22 +65,8 @@ module.exports.userlogin = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   try {
-    let userData = await User.findOne({
-      email: req.body.email,
-    });
-    if (userData) {
-      if (userData.password == req.body.password) {
-        req.session.User = userData;
-        console.log(req.session);
-        return res.redirect("/");
-      } else {
-        console.log("Password Does Not Match");
-        return res.redirect("back");
-      }
-    } else {
-      console.log("User Does Not Exist! Please SignUp First");
-      return res.redirect("back");
-    }
+    console.log("User Logged In Successfully");
+    return res.redirect("/");
   } catch (error) {
     if (error) console.log(error);
     return res.redirect("back");
@@ -110,3 +98,26 @@ module.exports.createAccount = async (req, res) => {
     }
   }
 };
+
+module.exports.addProducttocart = async (req, res) => {
+  try {
+    var incart = await cart.findOne({
+      productId: req.params.id,
+      userId: req.body.userId,
+      status: "pending",
+
+    });
+    if (incart) {
+      console.log('Product already Added in Cart');
+    }
+    else {
+      let cartData = await cart.create(req.body)
+      console.log(cartData);
+    }
+  } catch (err) {
+    console.log(err);
+    return res.redirect("back");
+  }
+};
+
+module.exports.addedtocart = async (req, res) => { };

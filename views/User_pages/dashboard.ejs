@@ -14,8 +14,8 @@
                                             <h3 class="animated fw-900">Supper Value Deals</h3>
                                             <h2 class="animated fw-900 text-brand">On All Products</h2>
                                             <p class="animated">Save more with coupons & up to 70% off</p>
-                                            <a class="animated btn btn-brush btn-brush-3" href="shop-product-right.html"
-                                                tabindex="0"> Shop Now </a>
+                                            <a class="animated btn btn-brush btn-brush-3" href="/" tabindex="0"> Shop
+                                                Now </a>
                                         </div>
                                     </div>
                                     <div class="col-lg-7 col-md-6">
@@ -35,8 +35,8 @@
                                             <h3 class="animated fw-900">Fashion Trending</h3>
                                             <h2 class="animated fw-900 text-brand">Great Collection</h2>
                                             <p class="animated">Save more with coupons & up to 20% off</p>
-                                            <a class="animated btn btn-brush btn-brush-1" href="shop-product-right.html"
-                                                tabindex="0"> Get It Now </a>
+                                            <a class="animated btn btn-brush btn-brush-1" href="/" tabindex="0"> Get It
+                                                Now </a>
                                         </div>
                                     </div>
                                     <div class="col-lg-7 col-md-6">
@@ -61,7 +61,7 @@
                             <div class="banner-text">
                                 <span>Smart Offer</span>
                                 <h4>Save 20% on <br>Woman Bag</h4>
-                                <a href="shop-grid-right.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                                <a href="/">Shop Now <i class="fi-rs-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                             <div class="banner-text">
                                 <span>Sale off</span>
                                 <h4>Great Summer <br>Collection</h4>
-                                <a href="shop-grid-right.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                                <a href="/">Shop Now <i class="fi-rs-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                             <div class="banner-text">
                                 <span>New Arrivals</span>
                                 <h4>Shop Today’s <br>Deals & Offers</h4>
-                                <a href="shop-grid-right.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                                <a href="/">Shop Now <i class="fi-rs-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                             <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
                             <ul class="categories">
                                 <% for (var scd of subcatData) { %>
-                                    <li><a href="shop-grid-right.html">
+                                    <li><a href="/">
                                             <%= scd.subcategory_name %>
                                         </a></li>
                                     <% } %>
@@ -105,20 +105,20 @@
                         <div class="widget-category mb-30">
                             <h5 class="section-title style-1 mb-30 wow fadeIn animated">Sort by</h5>
                             <ul class="categories">
-                                <li><a href="shop-grid-right.html">Popularity</a></li>
-                                <li><a href="shop-grid-right.html">Average rating</a></li>
-                                <li><a href="shop-grid-right.html">Price: Low to High</a></li>
-                                <li><a href="shop-grid-right.html">Price: High to Low</a></li>
+                                <li><a href="/">Popularity</a></li>
+                                <li><a href="/">Average rating</a></li>
+                                <li><a href="/">Price: Low to High</a></li>
+                                <li><a href="/">Price: High to Low</a></li>
                             </ul>
                         </div>
                         <div class="widget-category mb-30">
                             <h5 class="section-title style-1 mb-30 wow fadeIn animated">Price Range</h5>
                             <ul class="categories">
-                                <li><a href="shop-grid-right.html">₹0-₹200</a></li>
-                                <li><a href="shop-grid-right.html">₹200-₹400</a></li>
-                                <li><a href="shop-grid-right.html">₹400-₹600</a></li>
-                                <li><a href="shop-grid-right.html">₹600-₹800</a></li>
-                                <li><a href="shop-grid-right.html">800₹+</a></li>
+                                <li><a href="/">₹0-₹200</a></li>
+                                <li><a href="/">₹200-₹400</a></li>
+                                <li><a href="/">₹400-₹600</a></li>
+                                <li><a href="/">₹600-₹800</a></li>
+                                <li><a href="/">800₹+</a></li>
                             </ul>
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                                             <div class="product-cart-wrap mb-30">
                                                 <div class="product-img-action-wrap">
                                                     <div class="product-img product-img-zoom">
-                                                        <a href="shop-product-right.html">
+                                                        <a href="/productlist/<%= pd.id %>">
                                                             <img class="default-img" src="<%= pd.product_image %>"
                                                                 alt="product">
                                                             <img class="hover-img" src="<%= pd.product_image %>" alt="">
@@ -174,9 +174,9 @@
                                                 <div class="product-content-wrap">
                                                     <div class="product-category">
                                                         <div class="product-category">
-                                                            <a href="shop-grid-right.html">Clothing</a>
+                                                            <a href="/">Clothing</a>
                                                         </div>
-                                                        <a href="shop-grid-right.html">
+                                                        <a href="/">
                                                             <%= pd.type %>
                                                         </a>
                                                     </div>
@@ -196,10 +196,12 @@
                                                             ₹<%= pd.old_price %>
                                                         </span>
                                                     </div>
-                                                    <div class="product-action-1 show">
-                                                        <a aria-label="Add To Cart" class="action-btn hover-up"
-                                                            href="/"><i class="fi-rs-shopping-bag-add"></i></a>
-                                                    </div>
+                                                    <!-- <form action="/addProducttocart" method="post">
+                                                        <div class="product-action-1 show">
+                                                            <a aria-label="Add To Cart" class="action-btn hover-up"
+                                                                href=""><i class="fi-rs-shopping-bag-add"></i></a>
+                                                        </div>
+                                                    </form> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -236,7 +238,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Donec </a>
+                                                    <a href="/">Donec </a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Lorem ipsum dolor</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -288,7 +290,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Music</a>
+                                                    <a href="/">Music</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Donec ut nisl rutrum</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -323,8 +325,8 @@
                 <div class="banner-img banner-big wow fadeIn animated f-none">
                     <img src="/assets/imgs/banner/banner-4.png" alt="">
                     <div class="banner-text d-md-block d-none">
-                        <h4 class="mb-15 mt-40 text-brand">Repair Services</h4>
-                        <h1 class="fw-600 mb-20">We're an <br>Authorised Service Provider</h1>
+                        <h4 class="mb-15 mt-40 text-brand">up to 49% off</h4>
+                        <h1 class="fw-600 mb-20">Get Heavy <br>Discounts On Shopping</h1>
                         <a href="/" class="btn">Learn More <i class="fi-rs-arrow-right"></i></a>
                     </div>
                 </div>
@@ -339,59 +341,51 @@
                     <div class="carausel-6-columns" id="carausel-6-columns">
                         <div class="card-1">
                             <figure class=" img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="/assets/imgs/shop/category-thumb-1.jpg"
-                                        alt=""></a>
+                                <a href="/"><img src="/assets/imgs/shop/category-thumb-1.jpg" alt=""></a>
                             </figure>
-                            <h5><a href="shop-grid-right.html">T-Shirt</a></h5>
+                            <h5><a href="/">T-Shirt</a></h5>
                         </div>
                         <div class="card-1">
                             <figure class=" img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"> <img src="/assets/imgs/shop/category-thumb-2.jpg"
-                                        alt=""></a>
+                                <a href="/"> <img src="/assets/imgs/shop/category-thumb-2.jpg" alt=""></a>
                             </figure>
-                            <h5><a href="shop-grid-right.html">Bags</a></h5>
+                            <h5><a href="/">Bags</a></h5>
                         </div>
                         <div class="card-1">
                             <figure class=" img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="/assets/imgs/shop/category-thumb-3.jpg"
-                                        alt=""></a>
+                                <a href="/"><img src="/assets/imgs/shop/category-thumb-3.jpg" alt=""></a>
                             </figure>
-                            <h5><a href="shop-grid-right.html">Sandan</a></h5>
+                            <h5><a href="/">Sandan</a></h5>
                         </div>
                         <div class="card-1">
                             <figure class=" img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="/assets/imgs/shop/category-thumb-4.jpg"
-                                        alt=""></a>
+                                <a href="/"><img src="/assets/imgs/shop/category-thumb-4.jpg" alt=""></a>
                             </figure>
-                            <h5><a href="shop-grid-right.html">Scarf Cap</a></h5>
+                            <h5><a href="/">Scarf Cap</a></h5>
                         </div>
                         <div class="card-1">
                             <figure class=" img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="/assets/imgs/shop/category-thumb-5.jpg"
-                                        alt=""></a>
+                                <a href="/"><img src="/assets/imgs/shop/category-thumb-5.jpg" alt=""></a>
                             </figure>
-                            <h5><a href="shop-grid-right.html">Shoes</a></h5>
+                            <h5><a href="/">Shoes</a></h5>
                         </div>
                         <div class="card-1">
                             <figure class=" img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="/assets/imgs/shop/category-thumb-6.jpg"
-                                        alt=""></a>
+                                <a href="/"><img src="/assets/imgs/shop/category-thumb-6.jpg" alt=""></a>
                             </figure>
-                            <h5><a href="shop-grid-right.html">Pillowcase</a></h5>
+                            <h5><a href="/">Pillowcase</a></h5>
                         </div>
                         <div class="card-1">
                             <figure class=" img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="/assets/imgs/shop/category-thumb-7.jpg"
-                                        alt=""></a>
+                                <a href="/"><img src="/assets/imgs/shop/category-thumb-7.jpg" alt=""></a>
                             </figure>
-                            <h5><a href="shop-grid-right.html">Jumpsuits</a></h5>
+                            <h5><a href="/">Jumpsuits</a></h5>
                         </div>
                         <div class="card-1">
                             <figure class=" img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="/assets/imgs/shop/category-thumb-8.jpg"
-                                        alt=""></a>
+                                <a href="/"><img src="/assets/imgs/shop/category-thumb-8.jpg" alt=""></a>
                             </figure>
-                            <h5><a href="shop-grid-right.html">Hats</a></h5>
+                            <h5><a href="/">Hats</a></h5>
                         </div>
                     </div>
                 </div>
@@ -416,8 +410,7 @@
                             <div class="deal-bottom">
                                 <p>Hurry Up! Offer End In:</p>
                                 <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
-                                <a href="shop-grid-right.html" class="btn hover-up">Shop Now <i
-                                        class="fi-rs-arrow-right"></i></a>
+                                <a href="/" class="btn hover-up">Shop Now <i class="fi-rs-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -437,8 +430,7 @@
                             <div class="deal-bottom">
                                 <p>Hurry Up! Offer End In:</p>
                                 <div class="deals-countdown" data-countdown="2026/03/25 00:00:00"></div>
-                                <a href="shop-grid-right.html" class="btn hover-up">Shop Now <i
-                                        class="fi-rs-arrow-right"></i></a>
+                                <a href="/" class="btn hover-up">Shop Now <i class="fi-rs-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -701,7 +693,7 @@
                         <div class="brand-logo">
                             <img class="img-grey-hover" src="/assets/imgs/banner/brand-1.png" alt="">
                         </div>
-                        <div class="brand-logo">
+                        <div class="brand-logo">in
                             <img class="img-grey-hover" src="/assets/imgs/banner/brand-2.png" alt="">
                         </div>
                         <div class="brand-logo">
@@ -756,8 +748,7 @@
                             <div class="banner-text">
                                 <span>Woman Area</span>
                                 <h4 class="mt-5">Save 17% on <br>Clothing</h4>
-                                <a href="shop-grid-right.html" class="text-white">Shop Now <i
-                                        class="fi-rs-arrow-right"></i></a>
+                                <a href="/" class="text-white">Shop Now <i class="fi-rs-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -794,7 +785,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Nulla</a>
+                                                    <a href="/">Nulla</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Maecenas eget</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -808,7 +799,8 @@
                                                 </div>
                                                 <div class="product-action-1 show">
                                                     <a aria-label="Add To Cart" class="action-btn hover-up"
-                                                        href="shop-cart.html"><i class="fi-rs-shopping-bag-add"></i></a>
+                                                        href="/addProducttocart"><i
+                                                            class="fi-rs-shopping-bag-add"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -837,7 +829,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Duis </a>
+                                                    <a href="/">Duis </a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Luctus suscipit</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -880,7 +872,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Fusce </a>
+                                                    <a href="/">Fusce </a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Aliquam ac</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -923,7 +915,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Nunc </a>
+                                                    <a href="/">Nunc </a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Fusce et ligula</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -966,7 +958,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Aliquam</a>
+                                                    <a href="/">Aliquam</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Morbi lacinia</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1018,7 +1010,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Watch</a>
+                                                    <a href="/">Watch</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Cotton Leaf Printed 2</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1061,7 +1053,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Watch</a>
+                                                    <a href="/">Watch</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Smart Speaker</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1104,7 +1096,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Watch</a>
+                                                    <a href="/">Watch</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Hugy Speaker</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1147,7 +1139,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Watch</a>
+                                                    <a href="/">Watch</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Smart Speaker</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1190,7 +1182,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Watch</a>
+                                                    <a href="/">Watch</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Cotton Leaf Printed</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1241,7 +1233,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Watch</a>
+                                                    <a href="/">Watch</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Cotton Leaf Printed</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1284,7 +1276,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Watch</a>
+                                                    <a href="/">Watch</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Smart Speaker</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1327,7 +1319,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Watch</a>
+                                                    <a href="/">Watch</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Hugy Speaker</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1370,7 +1362,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Watch</a>
+                                                    <a href="/">Watch</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Smart Speaker</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1413,7 +1405,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">Watch</a>
+                                                    <a href="/">Watch</a>
                                                 </div>
                                                 <h2><a href="shop-product-right.html">Cotton Leaf Printed</a></h2>
                                                 <div class="rating-result" title="90%">
@@ -1510,7 +1502,7 @@
                                     <div class="banner-text">
                                         <span>Accessories</span>
                                         <h4>Save 17% on <br>Autumn Hat</h4>
-                                        <a href="shop-grid-right.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                                        <a href="/">Shop Now <i class="fi-rs-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -1520,7 +1512,7 @@
                                     <div class="banner-text">
                                         <span>Big Offer</span>
                                         <h4>Save 20% on <br>Women's socks</h4>
-                                        <a href="shop-grid-right.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                                        <a href="/">Shop Now <i class="fi-rs-arrow-right"></i></a>
                                     </div>
                                 </div>
                                 <div class="banner-img banner-2 wow fadeIn animated">
@@ -1528,7 +1520,7 @@
                                     <div class="banner-text">
                                         <span>Smart Offer</span>
                                         <h4>Save 20% on <br>Eardrop</h4>
-                                        <a href="shop-grid-right.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                                        <a href="/">Shop Now <i class="fi-rs-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
