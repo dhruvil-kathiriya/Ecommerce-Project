@@ -2,6 +2,10 @@
 
 This repository contains an E-commerce project developed using Node.js.
 
+![Frontend Panel](https://github.com/dhruvil-kathiriya/Ecommerce-Project/assets/135942681/3b115efa-c684-4e6b-9bc6-d4397494fbb1)
+![Backend Panel](https://github.com/dhruvil-kathiriya/Ecommerce-Project/assets/135942681/7f1f2ccd-9f13-4087-b9e8-1b9bdd9a6c00)
+
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -9,7 +13,6 @@ This repository contains an E-commerce project developed using Node.js.
 - [Installation](#installation)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -23,10 +26,9 @@ This E-commerce project is aimed at providing a comprehensive platform for onlin
 - Sorting and filtering of products
 - Shopping cart and checkout functionality
 - Checkout process for purchasing products
-- Order history and tracking
 - Admin panel to manage categories, subcategories, Brands, Types
   and products
-- Payment integration
+- Payment integration Using Stripe
 
 ## Installation
 
@@ -41,8 +43,6 @@ npm init
 ```
 
 Configure `.env`
-
-Copy the `.env.example` file to `.env` and update the MongoDB URI and other environment variables.
 
 Once the installation is complete, you can start the server using the following command:
 
