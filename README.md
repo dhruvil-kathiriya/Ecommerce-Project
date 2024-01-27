@@ -13,7 +13,6 @@ This repository contains an E-commerce project developed using Node.js.
 - [Installation](#installation)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -27,10 +26,9 @@ This E-commerce project is aimed at providing a comprehensive platform for onlin
 - Sorting and filtering of products
 - Shopping cart and checkout functionality
 - Checkout process for purchasing products
-- Order history and tracking
 - Admin panel to manage categories, subcategories, Brands, Types
   and products
-- Payment integration
+- Payment integration Using Stripe
 
 ## Installation
 
@@ -45,8 +43,6 @@ npm init
 ```
 
 Configure `.env`
-
-Copy the `.env.example` file to `.env` and update the MongoDB URI and other environment variables.
 
 Once the installation is complete, you can start the server using the following command:
 
