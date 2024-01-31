@@ -55,7 +55,7 @@ module.exports.userlogin = async (req, res) => {
       "brandId",
       "typeId",
     ]);
-  return res.render("User_pages/userlogin", {
+  return res.render("User_pages/UserLogin", {
     catData: catData,
     subcatData: subcatData,
     extracatData: extracatData,
@@ -108,10 +108,9 @@ module.exports.addProducttocart = async (req, res) => {
       status: "pending",
     });
     if (incart) {
-      console.log('Product already Added in Cart');
-    }
-    else {
-      let cartData = await cart.create(req.body)
+      console.log("Product already Added in Cart");
+    } else {
+      let cartData = await cart.create(req.body);
       console.log(cartData);
     }
   } catch (err) {
@@ -120,4 +119,4 @@ module.exports.addProducttocart = async (req, res) => {
   }
 };
 
-module.exports.addedtocart = async (req, res) => { };
+module.exports.addedtocart = async (req, res) => {};
