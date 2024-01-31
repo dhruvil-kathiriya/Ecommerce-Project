@@ -8,14 +8,18 @@ mongoose
   .connect(`${process.env.mongo_url}`)
   .then(() => console.log("Database Connected"))
   .catch((err) => console.log(err));
+
 const app = express();
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+
 const passport = require("passport");
+const GoogleStrategy = require("./config/google_oauth");
 const passportlocal = require("./config/passport-local-strategy");
 
 app.use(express.urlencoded());
 app.use(cookieParser());
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -46,8 +50,5 @@ app.use("/", require("./routes/user"));
 app.use("/admin", require("./routes/admin"));
 
 app.listen(port, (error) => {
-  if (error) {
-    console.log(error);
-  }
-  console.log(`Server responded On Port : ${port}`);
+  error ? console.log(error) : `Server responded On Port : ${port}`;
 });

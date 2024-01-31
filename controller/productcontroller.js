@@ -33,8 +33,8 @@ module.exports.insert_product = async (req, res) => {
     for (var i = 0; i < req.files.product_multiple_image.length; i++) {
       multiimage.push(
         product.multiImagepath +
-        "/" +
-        req.files.product_multiple_image[i].filename
+          "/" +
+          req.files.product_multiple_image[i].filename
       );
     }
     req.body.product_image = singleimag;
