@@ -10,7 +10,7 @@ passport.use(
       clientID:
         "871472100139-v56kqgq31cn1pkap93pksv67m25229va.apps.googleusercontent.com",
       clientSecret: "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",
-      callbackURL: "/google/callback",
+      callbackURL: "https://e-commerce-i4o1.onrender.com/google/callback",
     },
     async function (accessToken, refreshToken, profile, cb) {
       //   console.log(profile);
