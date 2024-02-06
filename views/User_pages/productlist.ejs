@@ -133,8 +133,9 @@
                                                 </div>
                                                 <div class="product-extra-link2">
                                                     <% if(locals.userdetails){ %>
-                                                    <form action="/addProducttocart/<% productData.id %>" method="post">
-
+                                                    <form action="/addProducttocart" method="post">
+                                                        <input type="hidden" name="productId" value="<%= productData.id %>">
+                                                        
                                                         <button type="submit" class="button button-add-to-cart">Add to
                                                             cart</button>
                                                             <a aria-label="Add To Wishlist" class="action-btn hover-up"

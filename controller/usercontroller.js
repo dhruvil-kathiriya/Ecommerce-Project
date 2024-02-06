@@ -103,18 +103,23 @@ module.exports.createAccount = async (req, res) => {
 
 module.exports.addProducttocart = async (req, res) => {
   try {
-    var incart = await cart
-      .findOne({
-        productId: req.params.id,
-      })
-      .populate("userId");
-    console.log(incart);
-    console.log(req.body);
+    var incart = await cart.findOne({
+      productId: req.params.id,
+      userId: req.user.id,
+    });
     if (incart) {
       console.log("Product already Added in Cart");
     } else {
+      // console.log(req.user);
+      req.body.userId = req.user.id;
+      req.body.status = "pending";
+      req.body.quantity = 1;
+      req.body.created_date = new Date().toLocaleString();
+      req.body.updated_date = new Date().toLocaleString();
+
       let cartData = await cart.create(req.body);
-      // console.log(cartData);
+      console.log("Product Added to Cart");
+      return res.redirect("back");
     }
   } catch (err) {
     console.log(err);
@@ -122,4 +127,25 @@ module.exports.addProducttocart = async (req, res) => {
   }
 };
 
-module.exports.addedtocart = async (req, res) => {};
+module.exports.checkout = async (req, res) => {
+  try {
+    let catData = await category.find({ isActive: true });
+    let subcatData = await subcategory.find({ isActive: true });
+    let extracatData = await extracategory.find({ isActive: true });
+    let productData = await product.find({ isActive: true });
+    let cartData = await cart.find().populate(["productId"]);
+
+    return res.render("User_pages/checkout", {
+      cartData: cartData,
+      catData: catData,
+      subcatData: subcatData,
+      extracatData: extracatData,
+      productData: productData,
+    });
+  } catch (err) {
+    if (err) {
+      console.log(err, "Something went Wrong");
+      return res.redirect("back");
+    }
+  }
+};

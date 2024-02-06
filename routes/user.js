@@ -44,5 +44,6 @@ routs.get(
     res.redirect("/");
   }
 );
+routs.get("/checkout", usercontroller.checkout);
 
 module.exports = routs;
