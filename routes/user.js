@@ -9,6 +9,9 @@ routs.get("/", usercontroller.home);
 routs.get("/productlist/:id", usercontroller.productlist);
 
 routs.get("/userlogin", usercontroller.userlogin);
+routs.post("/userlogin", async (req, res) => {
+  return res.redirect("/userlogin");
+});
 
 routs.post(
   "/login",
@@ -17,6 +20,11 @@ routs.post(
 );
 
 routs.post("/createAccount", usercontroller.createAccount);
+
+routs.get("/logout", async (req, res) => {
+  req.session.destroy();
+  return res.redirect("/");
+});
 
 routs.post(
   "/addProducttocart",

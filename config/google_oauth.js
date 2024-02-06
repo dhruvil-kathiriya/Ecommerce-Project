@@ -24,6 +24,8 @@ passport.use(
           email: profile.emails[0].value,
           password: await bcrypt.hash(pass, 10),
           role: "user",
+          created_date: new Date().toLocaleString(),
+          updated_date: new Date().toLocaleString(),
         };
         let newuserData = await user.create(userdetails);
         if (newuserData) {

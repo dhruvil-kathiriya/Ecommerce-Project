@@ -4,6 +4,7 @@ const extracategory = require("../models/extracategory");
 const product = require("../models/product");
 const User = require("../models/user");
 const cart = require("../models/cart");
+const bcrypt = require("bcrypt");
 const session = require("express-session");
 const { stat } = require("fs/promises");
 
@@ -78,12 +79,13 @@ module.exports.createAccount = async (req, res) => {
     if (req.body.password == req.body.cpassword) {
       req.body.role = "user";
       req.body.isActive = true;
+      req.body.password = await bcrypt.hash(req.body.password, 10);
       req.body.created_date = new Date().toLocaleString();
       req.body.updated_date = new Date().toLocaleString();
       let userData = await User.create(req.body);
       if (userData) {
         console.log("User Registered Successfully");
-        return res.redirect("/");
+        return res.redirect("/userlogin");
       } else {
         console.log("User is Not Registered");
         return res.redirect("back");
@@ -101,17 +103,18 @@ module.exports.createAccount = async (req, res) => {
 
 module.exports.addProducttocart = async (req, res) => {
   try {
-    // console.log(req.body);
-    var incart = await cart.findOne({
-      productId: req.params.id,
-      userId: req.body.userId,
-      status: "pending",
-    });
+    var incart = await cart
+      .findOne({
+        productId: req.params.id,
+      })
+      .populate("userId");
+    console.log(incart);
+    console.log(req.body);
     if (incart) {
       console.log("Product already Added in Cart");
     } else {
       let cartData = await cart.create(req.body);
-      console.log(cartData);
+      // console.log(cartData);
     }
   } catch (err) {
     console.log(err);

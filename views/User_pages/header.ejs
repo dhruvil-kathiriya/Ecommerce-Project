@@ -222,13 +222,13 @@
                                                 <% (locals.userdetails) %>
                                                     <% if(locals.userdetails){ %>
                                                         <p class="align-middle"><i class="fi-rs-user me-1"></i><a
-                                                                href="">
+                                                                href="#">
                                                                 Hello <%= locals.userdetails.username %>
                                                             </a></p>
+                                                            <p class="ms-2 align-middle text-danger"><a class="text-danger" href="/logout">Logout</a></p>
                                                         <% }else{ %>
                                                             <p class="align-middle"><i class="fi-rs-user me-1"></i><a
-                                                                    href="/userlogin">Log In / Sign
-                                                                    Up</a></p>
+                                                                    href="/userlogin">Log In</a></p>
                                                             <% } %>
                                             </div>
                                             <div class="header-action-icon-2">
@@ -239,7 +239,7 @@
                                                 </a>
                                             </div>
                                             <div class="header-action-icon-2">
-                                                <a class="mini-cart-icon" href="shop-cart.html">
+                                                <a class="mini-cart-icon" href="#">
                                                     <img alt="Evara" src="/assets/imgs/theme/icons/icon-cart.svg">
                                                     <span class="pro-count blue">2</span>
                                                 </a>
