@@ -45,5 +45,6 @@ routs.get(
   }
 );
 routs.get("/checkout", usercontroller.checkout);
+routs.get("/deleteone/:id", usercontroller.deleteone);
 
 module.exports = routs;

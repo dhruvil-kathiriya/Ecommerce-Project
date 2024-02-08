@@ -56,7 +56,9 @@
                     <span>$<%= crtData.productId.product_price %>* </span>
                   </td>
                   <td class="action" data-title="Remove">
-                    <a href="/deleteone" class="text-muted"
+                    <a
+                      href="/deleteone/:<%= crtData.productId.id %>"
+                      class="text-muted"
                       ><i class="fi-rs-trash"></i
                     ></a>
                   </td>

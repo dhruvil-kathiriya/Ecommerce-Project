@@ -193,7 +193,7 @@
                                                             <ul>
                                                                 <% for (var ecd of extracatData){ %>
                                                                     <% if(scd.id==ecd.subcategoryId) {%>
-                                                                        <li><a href="shop-product-right.html"></a>
+                                                                        <li><a href="/"></a>
                                                                             <%= ecd.extracategory_name %>
                                                                                 </a>
                                                                         </li>
@@ -239,51 +239,15 @@
                                                 </a>
                                             </div>
                                             <div class="header-action-icon-2">
-                                                <a class="mini-cart-icon" href="#">
+                                                <a class="mini-cart-icon" href="<% (locals.userdetails) %>
+                                                    <% if(locals.userdetails){ %>
+                                                    <%= `/checkout` %>
+                                                   <% }else{ %>
+                                                    <%= `/userlogin` %>
+                                                    <% } %>"">
                                                     <img alt="Evara" src="/assets/imgs/theme/icons/icon-cart.svg">
                                                     <span class="pro-count blue">2</span>
                                                 </a>
-                                                <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="shopping-cart-img">
-                                                                <a href="shop-product-right.html"><img alt="Evara"
-                                                                        src="/assets/imgs/shop/thumbnail-3.jpg"></a>
-                                                            </div>
-                                                            <div class="shopping-cart-title">
-                                                                <h4><a href="shop-product-right.html">Daisy Casual
-                                                                        Bag</a></h4>
-                                                                <h4><span>1 × </span>$800.00</h4>
-                                                            </div>
-                                                            <div class="shopping-cart-delete">
-                                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="shopping-cart-img">
-                                                                <a href="shop-product-right.html"><img alt="Evara"
-                                                                        src="/assets/imgs/shop/thumbnail-2.jpg"></a>
-                                                            </div>
-                                                            <div class="shopping-cart-title">
-                                                                <h4><a href="shop-product-right.html">Corduroy
-                                                                        Shirts</a></h4>
-                                                                <h4><span>1 × </span>$3200.00</h4>
-                                                            </div>
-                                                            <div class="shopping-cart-delete">
-                                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="shopping-cart-footer">
-                                                        <div class="shopping-cart-total">
-                                                            <h4>Total <span>$4000.00</span></h4>
-                                                        </div>
-                                                        <div class="shopping-cart-button">
-                                                            <a href="/checkout" class="outline">View cart</a>
-                                                            <a href="/checkout">Checkout</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -302,7 +266,7 @@
                                 </a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="mini-cart-icon" href="/">
                                     <img alt="Evara" src="/assets/imgs/theme/icons/icon-cart.svg">
                                     <span class="pro-count white">2</span>
                                 </a>
@@ -310,11 +274,11 @@
                                     <ul>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Evara"
+                                                <a href="/"><img alt="Evara"
                                                         src="/assets/imgs/shop/thumbnail-3.jpg"></a>
                                             </div>
                                             <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
+                                                <h4><a href="/">Plain Striola Shirts</a></h4>
                                                 <h3><span>1 × </span>$800.00</h3>
                                             </div>
                                             <div class="shopping-cart-delete">
@@ -323,11 +287,11 @@
                                         </li>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Evara"
+                                                <a href="/"><img alt="Evara"
                                                         src="/assets/imgs/shop/thumbnail-4.jpg"></a>
                                             </div>
                                             <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
+                                                <h4><a href="/">Macbook Pro 2022</a></h4>
                                                 <h3><span>1 × </span>$3500.00</h3>
                                             </div>
                                             <div class="shopping-cart-delete">
@@ -340,7 +304,7 @@
                                             <h4>Total <span>$383.00</span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html">View cart</a>
+                                            <a href="/">View cart</a>
                                             <a href="shop-checkout.html">Checkout</a>
                                         </div>
                                     </div>
@@ -418,14 +382,14 @@
                                     <li class="menu-item-has-children"><span class="menu-expand"></span><a
                                             href="#">Single Product</a>
                                         <ul class="dropdown">
-                                            <li><a href="shop-product-right.html">Product – Right Sidebar</a></li>
+                                            <li><a href="/">Product – Right Sidebar</a></li>
                                             <li><a href="shop-product-left.html">Product – Left Sidebar</a></li>
                                             <li><a href="shop-product-full.html">Product – No sidebar</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="shop-filter.html">Shop – Filter</a></li>
                                     <li><a href="shop-wishlist.html">Shop – Wishlist</a></li>
-                                    <li><a href="shop-cart.html">Shop – Cart</a></li>
+                                    <li><a href="/">Shop – Cart</a></li>
                                     <li><a href="shop-checkout.html">Shop – Checkout</a></li>
                                     <li><a href="shop-compare.html">Shop – Compare</a></li>
                                 </ul>

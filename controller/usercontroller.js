@@ -6,62 +6,95 @@ const User = require("../models/user");
 const cart = require("../models/cart");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
-const { stat } = require("fs/promises");
 
 module.exports.home = async (req, res) => {
-  let catData = await category.find({ isActive: true });
-  let subcatData = await subcategory.find({ isActive: true });
-  let extracatData = await extracategory.find({ isActive: true });
-  let productData = await product.find({ isActive: true });
-  return res.render("User_pages/dashboard", {
-    catData: catData,
-    subcatData: subcatData,
-    extracatData: extracatData,
-    productData: productData,
-  });
+  try {
+    let catData = await category.find({ isActive: true });
+    let subcatData = await subcategory.find({ isActive: true });
+    let extracatData = await extracategory.find({ isActive: true });
+    let productData = await product.find({ isActive: true });
+    console.log(req.body);
+    let cartData = "";
+    let availcart = await cart.find({});
+    if (!availcart) {
+      let cartData = await cart
+        .find({ userId: req.user.id, status: "pending" })
+        .populate("productId");
+      console.log(cartData);
+    }
+    return res.render("User_pages/dashboard", {
+      catData: catData,
+      subcatData: subcatData,
+      extracatData: extracatData,
+      productData: productData,
+      cartData: cartData,
+    });
+  } catch (err) {
+    if (err) {
+      console.log(err);
+      return res.redirect("back");
+    }
+  }
 };
 
 module.exports.productlist = async (req, res) => {
-  let catData = await category.find({ isActive: true });
-  let subcatData = await subcategory.find({ isActive: true });
-  let extracatData = await extracategory.find({ isActive: true });
-  let productData = await product
-    .findById(req.params.id)
-    .populate([
-      "categoryId",
-      "subcategoryId",
-      "extracategoryId",
-      "brandId",
-      "typeId",
-    ]);
-  // console.log(productData);
-  return res.render("User_pages/productlist", {
-    catData: catData,
-    subcatData: subcatData,
-    extracatData: extracatData,
-    productData: productData,
-  });
+  try {
+    let catData = await category.find({ isActive: true });
+    let subcatData = await subcategory.find({ isActive: true });
+    let extracatData = await extracategory.find({ isActive: true });
+    let cartData = await cart.find();
+    let productData = await product
+      .findById(req.params.id)
+      .populate([
+        "categoryId",
+        "subcategoryId",
+        "extracategoryId",
+        "brandId",
+        "typeId",
+      ]);
+    // console.log(productData);
+    return res.render("User_pages/productlist", {
+      catData: catData,
+      subcatData: subcatData,
+      extracatData: extracatData,
+      productData: productData,
+      cartData: cartData,
+    });
+  } catch (err) {
+    if (err) {
+      console.log(err);
+      return res.redirect("back");
+    }
+  }
 };
 
 module.exports.userlogin = async (req, res) => {
-  let catData = await category.find({ isActive: true });
-  let subcatData = await subcategory.find({ isActive: true });
-  let extracatData = await extracategory.find({ isActive: true });
-  let productData = await product
-    .findById(req.params.id)
-    .populate([
-      "categoryId",
-      "subcategoryId",
-      "extracategoryId",
-      "brandId",
-      "typeId",
-    ]);
-  return res.render("User_pages/UserLogin", {
-    catData: catData,
-    subcatData: subcatData,
-    extracatData: extracatData,
-    productData: productData,
-  });
+  try {
+    let catData = await category.find({ isActive: true });
+    let subcatData = await subcategory.find({ isActive: true });
+    let extracatData = await extracategory.find({ isActive: true });
+
+    let productData = await product
+      .findById(req.params.id)
+      .populate([
+        "categoryId",
+        "subcategoryId",
+        "extracategoryId",
+        "brandId",
+        "typeId",
+      ]);
+    return res.render("User_pages/UserLogin", {
+      catData: catData,
+      subcatData: subcatData,
+      extracatData: extracatData,
+      productData: productData,
+    });
+  } catch (err) {
+    if (err) {
+      console.log(err);
+      return res.redirect("back");
+    }
+  }
 };
 
 module.exports.login = async (req, res) => {
@@ -117,7 +150,7 @@ module.exports.addProducttocart = async (req, res) => {
       req.body.created_date = new Date().toLocaleString();
       req.body.updated_date = new Date().toLocaleString();
 
-      let cartData = await cart.create(req.body);
+      await cart.create(req.body);
       console.log("Product Added to Cart");
       return res.redirect("back");
     }
@@ -132,19 +165,42 @@ module.exports.checkout = async (req, res) => {
     let catData = await category.find({ isActive: true });
     let subcatData = await subcategory.find({ isActive: true });
     let extracatData = await extracategory.find({ isActive: true });
-    let productData = await product.find({ isActive: true });
-    let cartData = await cart.find().populate(["productId"]);
+    // let productData = await product.find({ isActive: true });
+    let cartData = await cart
+      .find({ userId: req.user.id, status: "pending" })
+      .populate("productId");
 
     return res.render("User_pages/checkout", {
       cartData: cartData,
       catData: catData,
       subcatData: subcatData,
       extracatData: extracatData,
-      productData: productData,
     });
   } catch (err) {
     if (err) {
       console.log(err, "Something went Wrong");
+      return res.redirect("back");
+    }
+  }
+};
+
+module.exports.deleteone = async (req, res) => {
+  try {
+    let cartData = await cart.deleteOne(req.params.id);
+    console.log(cartData);
+  } catch (err) {
+    if (err) {
+      console.log(err);
+      return res.redirect("back");
+    }
+  }
+};
+
+module.exports.DeleteAll = async (req, res) => {
+  try {
+  } catch (err) {
+    if (err) {
+      console.log(err);
       return res.redirect("back");
     }
   }
