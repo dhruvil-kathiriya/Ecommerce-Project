@@ -124,14 +124,14 @@
                                             </ul>
                                         </div>
                                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
-                                        <div class="detail-extralink">
-                                            <div class="detail-qty border radius">
-                                               
-                                                    <input class="qty-val" type="number" value="1">
+                                        <% if(locals.userdetails){ %>
+                                            <form action="/addProducttocart" method="post">
+                                    
+                                                <div class="detail-extralink">
+                                            <div class="border radius">
+                                                    <input type="number" name="quantity" value="1" min="1" max="10" />
                                                 </div>
                                                 <div class="product-extra-link2">
-                                                    <% if(locals.userdetails){ %>
-                                                    <form action="/addProducttocart" method="post">
                                                         <input type="hidden" name="productId" value="<%= productData.id %>">
                                                         
                                                         <button type="submit" class="button button-add-to-cart">Add to
@@ -143,12 +143,17 @@
                                                     </form>
                                                     <% }else{ %>
                                                         <form action="/userlogin" method="post">
+                                                            <div class="detail-extralink">
+                                                            <div class="border radius">
+                                                                <input type="number" name="quantity" value="1" min="1" max="10" />
+                                                            </div>
                                                             <button type="submit" class="button button-add-to-cart">Add to
                                                                 cart</button>
                                                                 <a aria-label="Add To Wishlist" class="action-btn hover-up"
                                                                 href="#"><i
                                                                 class="fi-rs-heart"></i></a>
                                                             </div>
+                                                        </div>
                                                         </form>
                                                         <%  } %>
                                             </div>

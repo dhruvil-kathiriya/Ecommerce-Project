@@ -13,14 +13,11 @@ module.exports.home = async (req, res) => {
     let subcatData = await subcategory.find({ isActive: true });
     let extracatData = await extracategory.find({ isActive: true });
     let productData = await product.find({ isActive: true });
-    console.log(req.body);
     let cartData = "";
-    let availcart = await cart.find({});
-    if (!availcart) {
-      let cartData = await cart
+    if (req.isAuthenticated()) {
+      cartData = await cart
         .find({ userId: req.user.id, status: "pending" })
         .populate("productId");
-      console.log(cartData);
     }
     return res.render("User_pages/dashboard", {
       catData: catData,
@@ -28,6 +25,7 @@ module.exports.home = async (req, res) => {
       extracatData: extracatData,
       productData: productData,
       cartData: cartData,
+      totalPro: cartData.length,
     });
   } catch (err) {
     if (err) {
@@ -59,6 +57,7 @@ module.exports.productlist = async (req, res) => {
       extracatData: extracatData,
       productData: productData,
       cartData: cartData,
+      totalPro: cartData.length,
     });
   } catch (err) {
     if (err) {
@@ -88,6 +87,7 @@ module.exports.userlogin = async (req, res) => {
       subcatData: subcatData,
       extracatData: extracatData,
       productData: productData,
+      totalPro: 0,
     });
   } catch (err) {
     if (err) {
@@ -136,17 +136,20 @@ module.exports.createAccount = async (req, res) => {
 
 module.exports.addProducttocart = async (req, res) => {
   try {
+    console.log(req.body);
+    console.log(req.params);
+
     var incart = await cart.findOne({
-      productId: req.params.id,
+      productId: req.body.productId,
       userId: req.user.id,
     });
     if (incart) {
       console.log("Product already Added in Cart");
+      return res.redirect("back");
     } else {
       // console.log(req.user);
       req.body.userId = req.user.id;
       req.body.status = "pending";
-      req.body.quantity = 1;
       req.body.created_date = new Date().toLocaleString();
       req.body.updated_date = new Date().toLocaleString();
 
@@ -165,16 +168,25 @@ module.exports.checkout = async (req, res) => {
     let catData = await category.find({ isActive: true });
     let subcatData = await subcategory.find({ isActive: true });
     let extracatData = await extracategory.find({ isActive: true });
-    // let productData = await product.find({ isActive: true });
-    let cartData = await cart
-      .find({ userId: req.user.id, status: "pending" })
-      .populate("productId");
-
+    let cartData = "";
+    if (req.isAuthenticated()) {
+      cartData = await cart
+        .find({ userId: req.user.id, status: "pending" })
+        .populate("productId");
+    }
+    let finalTotal = 0;
+    let total = 0;
+    for (let cart of cartData) {
+      total = parseInt(cart.productId.product_price) * parseInt(cart.quantity);
+      finalTotal += total;
+    }
     return res.render("User_pages/checkout", {
       cartData: cartData,
       catData: catData,
       subcatData: subcatData,
       extracatData: extracatData,
+      finalTotal: finalTotal,
+      totalPro: cartData.length,
     });
   } catch (err) {
     if (err) {
@@ -186,8 +198,8 @@ module.exports.checkout = async (req, res) => {
 
 module.exports.deleteone = async (req, res) => {
   try {
-    let cartData = await cart.deleteOne(req.params.id);
-    console.log(cartData);
+    let cartData = await cart.findByIdAndDelete(req.params.id);
+    return res.redirect("back");
   } catch (err) {
     if (err) {
       console.log(err);
@@ -198,10 +210,43 @@ module.exports.deleteone = async (req, res) => {
 
 module.exports.DeleteAll = async (req, res) => {
   try {
+    await cart.deleteMany({
+      userId: req.user.id,
+    });
+    return res.redirect("back");
   } catch (err) {
     if (err) {
       console.log(err);
       return res.redirect("back");
     }
+  }
+};
+
+module.exports.productQuantityTotal = async (req, res) => {
+  try {
+    let cartdata = await cart.findById(req.query.id);
+    if (cartdata) {
+      cartdata.quantity = req.query.qua;
+      let editData = await cart.findByIdAndUpdate(req.query.id, cartdata);
+      if (editData) {
+        let newData = await cart
+          .findById(req.query.id)
+          .populate("productId")
+          .exec();
+        let totalprice = newData.productId.product_price * newData.quantity;
+        console.log(totalprice);
+        let jsonData = `$<span id="proTotal-${req.query.pos}">${totalprice}</span>`;
+        return res.json(jsonData);
+      } else {
+        console.log("data not updated");
+        return res.redirect("back");
+      }
+    } else {
+      console.log("data Not Found");
+      return res.redirect("back");
+    }
+  } catch (err) {
+    console.log(err);
+    return res.redirect("back");
   }
 };

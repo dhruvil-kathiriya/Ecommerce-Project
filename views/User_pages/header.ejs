@@ -173,7 +173,7 @@
                 <div class="header-wrap header-space-between position-relative">
                     <div class="header-nav d-none d-lg-flex">
                         <div class="logo logo-width-1">
-                            <a href="index.html"><img src="/assets/imgs/theme/logo.svg" alt="logo"></a>
+                            <a href="/"><img src="/assets/imgs/theme/logo.svg" alt="logo"></a>
                         </div>
 
                         <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
@@ -246,7 +246,7 @@
                                                     <%= `/userlogin` %>
                                                     <% } %>"">
                                                     <img alt="Evara" src="/assets/imgs/theme/icons/icon-cart.svg">
-                                                    <span class="pro-count blue">2</span>
+                                                    <span class="pro-count blue"><%= totalPro %></span>
                                                 </a>
                                             </div>
                                         </div>
@@ -268,7 +268,7 @@
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="/">
                                     <img alt="Evara" src="/assets/imgs/theme/icons/icon-cart.svg">
-                                    <span class="pro-count white">2</span>
+                                    <span class="pro-count white"><%= totalPro %></span>
                                 </a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>

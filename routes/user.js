@@ -44,7 +44,10 @@ routs.get(
     res.redirect("/");
   }
 );
-routs.get("/checkout", usercontroller.checkout);
+routs.get("/checkout", passport.checkAthuntication, usercontroller.checkout);
+
 routs.get("/deleteone/:id", usercontroller.deleteone);
+routs.get("/DeleteAll", usercontroller.DeleteAll);
+routs.get("/productQuantityTotal", usercontroller.productQuantityTotal);
 
 module.exports = routs;
