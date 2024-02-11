@@ -4,8 +4,10 @@ const extracategory = require("../models/extracategory");
 const product = require("../models/product");
 const User = require("../models/user");
 const cart = require("../models/cart");
+const order = require("../models/order");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+var stripe = require("stripe")("sk_test_wFSjCKx4AW07JCc87b2fUwhH00zzjnRSJv");
 
 module.exports.home = async (req, res) => {
   try {
@@ -180,6 +182,7 @@ module.exports.checkout = async (req, res) => {
       total = parseInt(cart.productId.product_price) * parseInt(cart.quantity);
       finalTotal += total;
     }
+    //Everythings are in this page
     return res.render("User_pages/checkout", {
       cartData: cartData,
       catData: catData,
@@ -234,8 +237,7 @@ module.exports.productQuantityTotal = async (req, res) => {
           .populate("productId")
           .exec();
         let totalprice = newData.productId.product_price * newData.quantity;
-        console.log(totalprice);
-        let jsonData = `$<span id="proTotal-${req.query.pos}">${totalprice}</span>`;
+        let jsonData = `<span id="proTotal-${req.query.pos}">${totalprice}</span>`;
         return res.json(jsonData);
       } else {
         console.log("data not updated");
@@ -245,6 +247,80 @@ module.exports.productQuantityTotal = async (req, res) => {
       console.log("data Not Found");
       return res.redirect("back");
     }
+  } catch (err) {
+    console.log(err);
+    return res.redirect("back");
+  }
+};
+//run 1 time
+module.exports.payment = async (req, res) => {
+  try {
+    var countCart = await cart
+      .find({ userId: req.user.id, status: "pending" })
+      .countDocuments();
+    var cartPendingData = await cart
+      .find({ userId: req.user.id, status: "pending" })
+      .populate("productId")
+      .exec();
+    var cartPendingData2 = await cart
+      .find({ userId: req.user.id, status: "pending" })
+      .populate("productId")
+      .exec();
+    var sub = 0;
+    for (var i = 0; i < cartPendingData2.length; i++) {
+      sub =
+        sub +
+        cartPendingData2[i].quantity *
+          cartPendingData2[i].productId.product_price;
+    }
+
+    stripe.customers
+      .create({
+        email: req.body.stripeEmail,
+        source: req.body.stripeToken,
+        name: "Gourav Hammad",
+        address: {
+          line1: "TC 9/4 Old MES colony",
+          postal_code: "452331",
+          city: "Indore",
+          state: "Madhya Pradesh",
+          country: "India",
+        },
+      })
+      .then((customer) => {
+        return stripe.charges.create({
+          amount: sub, // Charging Rs 25
+          description: "Web Development Product",
+          currency: "INR",
+          customer: customer.id,
+        });
+      })
+      .then(async (charge) => {
+        var cartid = [];
+        var proid = [];
+
+        cartPendingData.forEach((v, i) => {
+          cartid.push(v.id);
+          proid.push(v.productId.id);
+        });
+
+        req.body.userId = req.user.id;
+        req.body.productId = proid;
+        req.body.status = "confirm";
+        req.body.cartId = cartid;
+
+        var or = await order.create(req.body);
+
+        if (or) {
+          cartPendingData.map(async (v, i) => {
+            await cart.findByIdAndUpdate(v.id, { status: "confirm" });
+          });
+          return res.redirect("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err); // If some error occurs
+      });
   } catch (err) {
     console.log(err);
     return res.redirect("back");

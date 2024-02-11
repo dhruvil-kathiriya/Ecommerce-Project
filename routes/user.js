@@ -47,7 +47,11 @@ routs.get(
 routs.get("/checkout", passport.checkAthuntication, usercontroller.checkout);
 
 routs.get("/deleteone/:id", usercontroller.deleteone);
+
 routs.get("/DeleteAll", usercontroller.DeleteAll);
+
 routs.get("/productQuantityTotal", usercontroller.productQuantityTotal);
+
+routs.post("/payment", passport.checkAthuntication, usercontroller.payment);
 
 module.exports = routs;
