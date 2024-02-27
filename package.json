@@ -4,10 +4,8 @@
     "node": ">18.0.0"
   },
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "run dev": "node index.js"
   },
   "author": "",
   "license": "ISC",
